@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Androi/Project/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/JavaAndroi/FinalProject/Project/app/src/main/res/drawable/button_default.xml" value="0.1545" />
+        <entry key="..\:/JavaAndroi/FinalProject/Project/app/src/main/res/drawable/custom_button.xml" value="0.1585" />
+        <entry key="..\:/JavaAndroi/FinalProject/Project/app/src/main/res/drawable/custom_progress_bar.xml" value="0.24" />
+        <entry key="..\:/JavaAndroi/FinalProject/Project/app/src/main/res/layout/activity_game_word_match.xml" value="0.33" />
+        <entry key="..\:/JavaAndroi/FinalProject/Project/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/JavaAndroi/FinalProject/Project/app/src/main/res/layout/word_button_layout.xml" value="0.31476449275362317" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/button_rounded-full.xml" value="0.125" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_check.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_close.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_custom_account_48.xml" value="0.107" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_custom_book_48.xml" value="0.107" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_custom_close.xml" value="0.107" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_custom_game_48px.xml" value="0.107" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_custom_home_48.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_custom_note_48.xml" value="0.107" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_diamond.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_play.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_sad_face.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_search.xml" value="0.223" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_streak.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable-v24/ic_timeout.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/bg_border_bottom.xml" value="0.208" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/bg_card.xml" value="0.2125" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/bg_highlight.xml" value="0.223" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/bottom_shadow_gradient.xml" value="0.2395" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_custom.xml" value="0.23" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_danger.xml" value="0.23" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_default.xml" value="0.142" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_main.xml" value="0.2395" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_rounded-full.xml" value="0.125" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_rounded_full.xml" value="0.125" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_wrong.xml" value="0.142" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/custom_progress_bar.xml" value="0.2395" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.107" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.107" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/ic_baseline_favorite_24_gray.xml" value="0.1355" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.107" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/ic_blue_coin.xml" value="0.2395" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/ic_custom_close_gray.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/ic_df_search_35.xml" value="0.223" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/popup_bg.xml" value="0.2305" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/table_border.xml" value="0.23" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/text_lines.xml" value="0.23" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/top_shadow_gradient.xml" value="0.2395" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_game_result.xml" value="0.2930253623188406" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_game_start_game.xml" value="0.25" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_game_word_match.xml" value="0.33" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_note_add_new_vocab.xml" value="0.3592592592592593" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_note_update_vocap.xml" value="0.34057971014492755" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/content_game_result.xml" value="0.2930253623188406" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/custom_input.xml" value="0.30978260869565216" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/fragment_book.xml" value="0.2930253623188406" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/fragment_game.xml" value="0.2930253623188406" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/fragment_note.xml" value="0.1" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/fragment_user.xml" value="0.2930253623188406" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/game_activity_home.xml" value="0.33" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/game_activity_word_match.xml" value="0.3233695652173913" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/game_layout_bottom_popup.xml" value="0.2930253623188406" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/game_layout_bottom_popup_exist.xml" value="0.33" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/game_layout_bottom_popup_finish.xml" value="0.2930253623188406" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/game_layout_bottom_popup_timeout.xml" value="0.33" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/game_layout_bottom_popup_wrong_answer_time.xml" value="0.25" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/game_layout_user_rank.xml" value="0.3008595988538682" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/game_layout_word_button.xml" value="0.25" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/note_layout_list_item.xml" value="0.2568306010928962" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/note_layout_word_item.xml" value="0.32382246376811596" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/word_button_layout.xml" value="0.13703703703703704" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

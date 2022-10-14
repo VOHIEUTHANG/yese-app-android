@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ToggleButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btnWordItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_marginBottom="14dp"
+    android:background="@drawable/button_default"
+    android:onClick="onCLickHandler"
+    android:text="Text"
+    android:textAllCaps="false"
+    android:textAlignment="center"
+    android:textSize="19dp"
+    android:button="@android:color/transparent"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:textColor="#444"
+    >
+</ToggleButton>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Home" android:icon="@drawable/ic_custom_home_48" android:id="@+id/home"/>
+    <item android:title="Books" android:icon="@drawable/ic_custom_book_48" android:id="@+id/books"/>
+    <item android:title="Game" android:icon="@drawable/ic_custom_game_48px" android:id="@+id/game"/>
+    <item android:title="Note" android:icon="@drawable/ic_custom_note_48" android:id="@+id/note"/>
+    <item android:title="User" android:icon="@drawable/ic_custom_account_48" android:id="@+id/user"/>
+</menu>

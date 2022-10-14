@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".Router.Note.Activities.Note_update_vocap">
+
+    <ImageView
+        android:id="@+id/imvBtnCloseAddWordActivity"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_custom_close"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Update Vocabulary"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="14dp"
+        >
+        <EditText
+            android:id="@+id/edUDtWord"
+            android:editable="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="word"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/custom_input"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp" />
+
+        <EditText
+            android:id="@+id/etUDWordType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/custom_input"
+            android:hint="word type"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp" />
+
+        <EditText
+            android:id="@+id/etUDMeans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/custom_input"
+            android:hint="vietnamese means"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp" />
+
+        <EditText
+            android:id="@+id/etUDSynonyms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/custom_input"
+            android:hint="synonyms"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp" />
+
+        <EditText
+            android:id="@+id/etUDExample"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/custom_input"
+            android:hint="example sentence"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp" />
+
+        <EditText
+            android:id="@+id/etUDTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/custom_input"
+            android:hint="tag"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp" />
+
+        <Button
+            android:id="@+id/btnUpdateVocab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_rounded_full"
+            android:paddingVertical="16dp"
+            android:text="Update "
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
