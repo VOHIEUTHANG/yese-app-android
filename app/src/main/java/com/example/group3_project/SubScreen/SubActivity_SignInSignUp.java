@@ -1,0 +1,62 @@
+package com.example.group3_project.SubScreen;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import com.example.group3_project.Fragment.BookFragment;
+import com.example.group3_project.Fragment.GameFragment;
+import com.example.group3_project.Fragment.HomeFragment;
+import com.example.group3_project.Fragment.NoteFragment;
+import com.example.group3_project.Fragment.UserFragment;
+import com.example.group3_project.R;
+import com.example.group3_project.SubScreen.Fragment.Login;
+import com.example.group3_project.SubScreen.Fragment.SignUp;
+import com.example.group3_project.databinding.ActivityMainBinding;
+
+public class SubActivity_SignInSignUp extends AppCompatActivity {
+    TextView loginFragment,signUpFragment;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sub_sign_in_sign_up);
+        setControl();
+        setEvent();
+    }
+
+    private void setControl() {
+        loginFragment = findViewById(R.id.tvLogin);
+        signUpFragment = findViewById(R.id.tvSignUp);
+    }
+
+    private void setEvent() {
+        initView();
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.flLoginContainer, fragment);
+        fragmentTransaction.commit();
+    }
+
+    public void initView(){
+        replaceFragment(new Login());
+        signUpFragment.setTextColor(Color.rgb(200,200,200));
+        loginFragment.setOnClickListener(view ->{
+            replaceFragment(new Login());
+            loginFragment.setTextColor(Color.rgb(255,255,255));
+            signUpFragment.setTextColor(Color.rgb(200,200,200));
+        });
+        signUpFragment.setOnClickListener(view ->{
+            replaceFragment(new SignUp());
+            signUpFragment.setTextColor(Color.rgb(255,255,255));
+            loginFragment.setTextColor(Color.rgb(200,200,200));
+        });
+    }
+}

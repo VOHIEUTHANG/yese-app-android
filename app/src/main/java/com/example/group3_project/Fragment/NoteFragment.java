@@ -7,13 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,11 +38,12 @@ public class NoteFragment extends Fragment {
     List<Vocab> vocabList = new ArrayList<>();
     VocabAdapter vocabAdapter;
     String username;
+    EditText edSearch;
 
-    String[] sortTypeList = {"Default","A-Z","Z->A","Create time desc","Create time asc"};
+    String[] sortTypeList = {"Default", "A-Z", "Z->A", "Create time desc", "Create time asc"};
     List<String> tagList = new ArrayList<>();
-    AutoCompleteTextView autoCompleteSortType,actvFilterSelect;
-    ArrayAdapter<String> adapterSortTypeList,adapterTagList;
+    AutoCompleteTextView autoCompleteSortType, actvFilterSelect;
+    ArrayAdapter<String> adapterSortTypeList, adapterTagList;
 
     public NoteFragment() {
     }
@@ -63,58 +68,94 @@ public class NoteFragment extends Fragment {
 
     private void setEvent() {
         getCurrentUserLogin();
-        initTagList();
+//        initTagList();
         renderListView();
 
-        btnAddVocab.setOnClickListener(item->{
+        btnAddVocab.setOnClickListener(item -> {
             Intent intent = new Intent(requireContext(), Note_add_new_vocab.class);
             startActivity(intent);
         });
 
+        edSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String searchVal = String.valueOf(editable).trim();
+                if (searchVal.length() > 0) {
+                    getVocabBySearchCondition(searchVal);
+                } else {
+                    getAllVocabByUsername();
+                }
+                vocabAdapter.notifyDataSetChanged();
+            }
+        });
+
+
 //       render select sort type
-        adapterSortTypeList = new ArrayAdapter<String>(requireContext(),R.layout.note_layout_list_item,sortTypeList);
-        adapterTagList = new ArrayAdapter<String>(requireContext(),R.layout.note_layout_list_item,tagList);
-
-        autoCompleteSortType.setAdapter(adapterSortTypeList);
-        actvFilterSelect.setAdapter(adapterTagList);
-
-        autoCompleteSortType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(requireContext(), "You select item: " + item, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        actvFilterSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(requireContext(), "You select item: " + item, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        adapterSortTypeList = new ArrayAdapter<String>(requireContext(), R.layout.note_layout_option_item, sortTypeList);
+//        adapterTagList = new ArrayAdapter<String>(requireContext(), R.layout.note_layout_option_item, tagList);
+//
+//        autoCompleteSortType.setAdapter(adapterSortTypeList);
+//        actvFilterSelect.setAdapter(adapterTagList);
+//
+//        autoCompleteSortType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String item = adapterView.getItemAtPosition(i).toString();
+//                Toast.makeText(requireContext(), "You select item: " + item, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        actvFilterSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String item = adapterView.getItemAtPosition(i).toString();
+//                Toast.makeText(requireContext(), "You select item: " + item, Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
-    public void renderListView(){
+    public void getVocabBySearchCondition(String searchVal) {
+        try {
+            if (username != null) {
+                vocabList.clear();
+                vocabList.addAll(AppDatabase.getInstance(requireContext()).vocabDao().filterWordBySubString(username,searchVal));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void renderListView() {
         getAllVocabByUsername();
-        vocabAdapter = new VocabAdapter(requireContext(),R.layout.note_layout_word_item, vocabList);
+        vocabAdapter = new VocabAdapter(requireContext(), R.layout.note_layout_word_item, vocabList);
         lvVocabList.setAdapter(vocabAdapter);
     }
 
-    public void initTagList(){
+    public void initTagList() {
         tagList.add("all");
         tagList.add("none");
         List<String> tags = AppDatabase.getInstance(requireContext()).vocabDao().getTagListByUsername(username);
         tagList.addAll(tags);
     }
 
-    public void getAllVocabByUsername(){
+    public void getAllVocabByUsername() {
         try {
-            if(username != null){
+            if (username != null) {
                 vocabList.clear();
                 vocabList.addAll(AppDatabase.getInstance(requireContext()).vocabDao().getAllVocabByUsername(username));
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(requireContext(), "Get vocabs list by username failure !", Toast.LENGTH_SHORT).show();
         }
@@ -123,8 +164,9 @@ public class NoteFragment extends Fragment {
     private void setControl() {
         btnAddVocab = getView().findViewById(R.id.btnAddWord);
         lvVocabList = getView().findViewById(R.id.lvVocabList);
-        autoCompleteSortType =getView().findViewById(R.id.actvSortSelect);
-        actvFilterSelect = getView().findViewById(R.id.actvFilterSelect);
+//        autoCompleteSortType = getView().findViewById(R.id.actvSortSelect);
+//        actvFilterSelect = getView().findViewById(R.id.actvFilterSelect);
+        edSearch = getView().findViewById(R.id.edSearch);
     }
 
     @Override
@@ -140,7 +182,7 @@ public class NoteFragment extends Fragment {
         vocabAdapter.notifyDataSetChanged();
     }
 
-    public void getCurrentUserLogin(){
+    public void getCurrentUserLogin() {
         username = ((MyApplication) requireActivity().getApplication()).getUsername();
     }
 }

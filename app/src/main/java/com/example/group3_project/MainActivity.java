@@ -71,11 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new BookFragment());
                     break;
                 case R.id.game:
-//                  pass username to game fragment
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("username",currentUsername);
                     GameFragment gameFragment = new GameFragment();
-//                    gameFragment.setArguments(bundle);
                     replaceFragment(gameFragment);
                     break;
                 case R.id.note:

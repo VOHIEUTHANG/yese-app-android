@@ -43,6 +43,12 @@ public class VocabAdapter extends ArrayAdapter {
         this.vocabs = vocabs;
     }
 
+    public void setData(List<Vocab> vocabs){
+        this.vocabs = vocabs;
+        notifyDataSetChanged();
+    }
+
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

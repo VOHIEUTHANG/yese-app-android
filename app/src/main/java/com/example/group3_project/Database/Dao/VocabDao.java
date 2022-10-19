@@ -27,6 +27,9 @@ public interface VocabDao {
     @Query("SELECT distinct(label) FROM Vocab WHERE rk_username = :username and label is not null")
     List<String> getTagListByUsername(String username);
 
+    @Query("SELECT * FROM Vocab WHERE rk_username = :username AND words LIKE '%' || :subString || '%' ")
+    List<Vocab> filterWordBySubString(String username, String subString);
+
     @Delete
     void deleteOneVocab(Vocab vocab);
 
