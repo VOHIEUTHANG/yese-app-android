@@ -27,6 +27,8 @@ import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
 import com.example.group3_project.Router.Note.Activities.Note_add_new_vocab;
 import com.example.group3_project.Router.Note.VocabAdapter;
+import com.example.group3_project.SessionManagement;
+import com.example.group3_project.Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -183,6 +185,6 @@ public class NoteFragment extends Fragment {
     }
 
     public void getCurrentUserLogin() {
-        username = ((MyApplication) requireActivity().getApplication()).getUsername();
+        username = Utils.getUsername(requireContext());
     }
 }

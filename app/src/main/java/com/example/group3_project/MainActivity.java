@@ -23,7 +23,6 @@ import com.example.group3_project.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
-    private final String currentUsername = "devostack2k";
     private static User currentUser;
 
     TextView tvStreakCount,tvDiamondCount;
@@ -41,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     public void setEvent(){
         setCurrentUserView();
         initView();
-        setLoginUser();
     }
 
     @Override
@@ -85,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setLoginUser(){
-        ((MyApplication) this.getApplication()).setUsername(currentUsername);
-    }
+//    public void setLoginUser(){
+//        ((MyApplication) this.getApplication()).setUsername(currentUsername);
+//    }
 
     private void setControl() {
         tvStreakCount = findViewById(R.id.tvStreakCount);
@@ -103,14 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public User getCurrentUser(){
-        User user = null;
-        try {
-             user = AppDatabase.getInstance(this).userDao().findOneUserByUsername(currentUsername);
-        }catch(Exception e){
-            e.printStackTrace();
-            Toast.makeText(this, "Get user from database failured !", Toast.LENGTH_SHORT).show();
-        }
-        return user;
+        return Utils.getCurrentUser(this);
     }
 
 }

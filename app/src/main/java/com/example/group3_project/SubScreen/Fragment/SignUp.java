@@ -17,12 +17,15 @@ import android.widget.Toast;
 import com.example.group3_project.Database.AppDatabase.AppDatabase;
 import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.R;
+import com.example.group3_project.Router.Game.OnWordButtonClickListener;
+import com.example.group3_project.Utils.Utils;
 
 import java.util.concurrent.ExecutionException;
 
 public class SignUp extends Fragment {
     EditText etUsername, etPassword, etDisplayName, etEmail;
     Button btnSignUp;
+    OnWordButtonClickListener callbackHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,10 @@ public class SignUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sign_up, container, false);
+    }
+
+    public SignUp(OnWordButtonClickListener callbackHandler){
+        this.callbackHandler = callbackHandler;
     }
 
     @Override
@@ -59,15 +66,23 @@ public class SignUp extends Fragment {
                     if (username.length() == 0 || password.length() == 0 || email.length() == 0 || displayName.length() == 0) {
                         Toast.makeText(requireContext(), "Vui lòng điền đầy đủ thông tin tài khoản !", Toast.LENGTH_SHORT).show();
                     } else {
-                        User user = new User(username, displayName, password, email, 0, 0, "default_avatar");
-                        try {
-                            AppDatabase.getInstance(requireContext()).userDao().insertOneUser(user);
-                            Toast.makeText(requireContext(), "Register successful !", Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Toast.makeText(requireContext(), "Register failure, try again !", Toast.LENGTH_SHORT).show();
+                        String hashPassword  = Utils.getHashPassword(password);
+                        User user = new User(username, displayName, hashPassword, email, 0, 0, "default_avatar");
+                        User existUser = AppDatabase.getInstance(requireContext()).userDao().findOneUserByUsername(username);
+                        if(existUser == null){
+                            try {
+                                AppDatabase.getInstance(requireContext()).userDao().insertOneUser(user);
+                                Toast.makeText(requireContext(), "Đăng ký tài khoản thành công !", Toast.LENGTH_SHORT).show();
+                                Thread.sleep(2000);
+//                          switch to login activity
+                                callbackHandler.onButtonClick(1);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(requireContext(), "Đăng ký thật bại, vui lòng liên hệ admin !", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(requireContext(), "Username này đã tồn tại, vui lòng thử một username khác !", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 }
         );

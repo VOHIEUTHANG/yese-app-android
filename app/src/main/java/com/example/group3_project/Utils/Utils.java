@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 public class Utils {
     public static int getResourceId(Context context, String name) {
         name = name.toLowerCase();
@@ -29,9 +31,30 @@ public class Utils {
 
     public static User getCurrentUser(Context context){
         SessionManagement sessionManagement = new SessionManagement(context);
+        Boolean loginStatus = sessionManagement.getLoginStatus();
+        if(!loginStatus) return null;
         String username = sessionManagement.getUsername();
-        if(username == null) return null;
+        if(username == null || username.equals("none")) return null;
         return AppDatabase.getInstance(context).userDao().findOneUserByUsername(username);
     }
+
+    public static String getUsername(Context context){
+        SessionManagement sessionManagement = new SessionManagement(context);
+        Boolean loginStatus = sessionManagement.getLoginStatus();
+        if(!loginStatus) return null;
+        String username = sessionManagement.getUsername();
+        if(username == null || username.equals("none")) return null;
+        return username;
+    }
+
+    public static String getHashPassword(String password){
+        return BCrypt.withDefaults().hashToString(12, password.toCharArray());
+    }
+
+    public static Boolean verifyPassword(String password, String hashPassword){
+        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hashPassword);
+        return result.verified;
+    }
+
 
 }

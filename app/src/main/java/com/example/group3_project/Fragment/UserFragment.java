@@ -28,13 +28,11 @@ import com.example.group3_project.Utils.Utils;
 
 public class UserFragment extends Fragment {
 
-    private String username;
-
-
     EditText edUsername,edDisplayName,edUserEmail;
     ImageView ivUserAvatar;
     Button btnUpdateUser,btnLogout;
-    User user;
+
+    private static User user;
 
     public UserFragment() {
     }
@@ -54,7 +52,6 @@ public class UserFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setControl();
         setEvent();
-
     }
 
     private void setControl() {
@@ -68,7 +65,7 @@ public class UserFragment extends Fragment {
     }
 
     private void setEvent() {
-        getCurrentUserLogin();
+        initUserInfor();
         btnUpdateUser.setOnClickListener(item->{
             String displayName = edDisplayName.getText().toString().trim();
             String email = edUserEmail.getText().toString().trim();
@@ -93,7 +90,16 @@ public class UserFragment extends Fragment {
             }
             startActivity(new Intent(requireContext(), SubActivity_SignInSignUp.class));
         });
-        user = AppDatabase.getInstance(requireContext()).userDao().findOneUserByUsername(username);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_user, container, false);
+    }
+
+    public void initUserInfor(){
+        user = Utils.getCurrentUser(requireContext());
         if(user != null){
             edUsername.setText(user.getUsername());
             edDisplayName.setText(user.getDisplayName());
@@ -107,20 +113,6 @@ public class UserFragment extends Fragment {
             }
         }else{
             Toast.makeText(requireContext(), "User not found !", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_user, container, false);
-    }
-
-    public void getCurrentUserLogin(){
-        String usernameValue = ((MyApplication) requireActivity().getApplication()).getUsername();
-        if(usernameValue != null){
-            username = usernameValue;
         }
     }
 

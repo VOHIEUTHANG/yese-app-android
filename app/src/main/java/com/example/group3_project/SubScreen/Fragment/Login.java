@@ -24,6 +24,7 @@ import com.example.group3_project.R;
 import com.example.group3_project.SessionManagement;
 import com.example.group3_project.SubScreen.SubActivity_ChooseLevel;
 import com.example.group3_project.SubScreen.SubActivity_SignInSignUp;
+import com.example.group3_project.Utils.Utils;
 
 
 public class Login extends Fragment {
@@ -109,9 +110,9 @@ public class Login extends Fragment {
         if(user == null){
             tvLoginStatus.setText("Wrong username or password, try again !");
         }else{
-            String userPassword = user.getPassword();
+            String hashPassword = user.getPassword();
 //            Login successfully
-            if(userPassword.equals(password)){
+            if(Utils.verifyPassword(password,hashPassword)){
                 SessionManagement sessionManagement = new SessionManagement(getContext());
                 sessionManagement.saveSession(user);
 //              Move to next activity

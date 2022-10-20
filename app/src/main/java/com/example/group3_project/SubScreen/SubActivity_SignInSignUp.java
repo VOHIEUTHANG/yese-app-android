@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.group3_project.Fragment.BookFragment;
 import com.example.group3_project.Fragment.GameFragment;
@@ -15,6 +16,7 @@ import com.example.group3_project.Fragment.HomeFragment;
 import com.example.group3_project.Fragment.NoteFragment;
 import com.example.group3_project.Fragment.UserFragment;
 import com.example.group3_project.R;
+import com.example.group3_project.Router.Game.OnWordButtonClickListener;
 import com.example.group3_project.SubScreen.Fragment.Login;
 import com.example.group3_project.SubScreen.Fragment.SignUp;
 import com.example.group3_project.databinding.ActivityMainBinding;
@@ -33,6 +35,13 @@ public class SubActivity_SignInSignUp extends AppCompatActivity {
         loginFragment = findViewById(R.id.tvLogin);
         signUpFragment = findViewById(R.id.tvSignUp);
     }
+// Call back to switch to login fragment when user sign up success.
+    public class switchToLoginFragmentCallBack implements OnWordButtonClickListener {
+        @Override
+        public void onButtonClick(int key) {
+            switchToLoginFragment();
+        }
+    }
 
     private void setEvent() {
         initView();
@@ -49,14 +58,19 @@ public class SubActivity_SignInSignUp extends AppCompatActivity {
         replaceFragment(new Login());
         signUpFragment.setTextColor(Color.rgb(200,200,200));
         loginFragment.setOnClickListener(view ->{
-            replaceFragment(new Login());
-            loginFragment.setTextColor(Color.rgb(255,255,255));
-            signUpFragment.setTextColor(Color.rgb(200,200,200));
+            switchToLoginFragment();
         });
         signUpFragment.setOnClickListener(view ->{
-            replaceFragment(new SignUp());
+            replaceFragment(new SignUp(new switchToLoginFragmentCallBack()));
             signUpFragment.setTextColor(Color.rgb(255,255,255));
             loginFragment.setTextColor(Color.rgb(200,200,200));
         });
     }
+
+    public void switchToLoginFragment(){
+        replaceFragment(new Login());
+        loginFragment.setTextColor(Color.rgb(255,255,255));
+        signUpFragment.setTextColor(Color.rgb(200,200,200));
+    }
+
 }

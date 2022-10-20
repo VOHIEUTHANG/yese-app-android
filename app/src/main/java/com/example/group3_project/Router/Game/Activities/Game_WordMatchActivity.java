@@ -186,8 +186,6 @@ public class Game_WordMatchActivity extends AppCompatActivity {
         btnExistGame.setOnClickListener(view -> {
             score = 0;
             showExistGameDialog();
-
-
         });
     }
 

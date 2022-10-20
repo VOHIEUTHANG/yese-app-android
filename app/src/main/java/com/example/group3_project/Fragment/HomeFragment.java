@@ -114,8 +114,7 @@ public class HomeFragment extends Fragment {
     }
 
     public String getCurrentUserLogin(){
-        String username = ((MyApplication) requireActivity().getApplication()).getUsername();
-        return username;
+        return Utils.getUsername(requireContext());
     }
 
 

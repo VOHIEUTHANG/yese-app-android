@@ -91,7 +91,4 @@ public class GameFragment extends Fragment {
         return username;
     }
 
-
-
-
 }

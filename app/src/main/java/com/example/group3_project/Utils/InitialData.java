@@ -10,12 +10,12 @@ import java.util.Date;
 public class InitialData {
     public static ArrayList<User> getUserList(){
         ArrayList<User> userList = new ArrayList<>();
-        userList.add(new User("devostack2k","Thắng Hiếu Võ", "0123123123", "hieuthang369@gmail.com", 30 ,1021, "user"));
-        userList.add(new User("username_test_1","password_test_1", "DevoStack2k", 308, "user3"));
-        userList.add(new User("username_test_2", "password_test_2", "Kathy Nguyen", 221,"user1"));
-        userList.add(new User("username_test_3", "password_test_3", "Orange Tran", 221,"user2"));
-        userList.add(new User("username_test_4", "password_test_4", "Elis Phan", 92,"user4"));
-        userList.add(new User("username_test_5", "password_test_5", "DevoXX", 40,"user5"));
+        userList.add(new User("devostack2k","Thắng Hiếu Võ", Utils.getHashPassword("0123123123"), "hieuthang369@gmail.com", 30 ,1021, "user"));
+        userList.add(new User("username_test_1",Utils.getHashPassword("password_test_1"), "DevoStack2k", 308, "user3"));
+        userList.add(new User("username_test_2", Utils.getHashPassword("password_test_2"), "Kathy Nguyen", 221,"user1"));
+        userList.add(new User("username_test_3", Utils.getHashPassword("password_test_3"), "Orange Tran", 221,"user2"));
+        userList.add(new User("username_test_4", Utils.getHashPassword("password_test_4"), "Elis Phan", 92,"user4"));
+        userList.add(new User("username_test_5", Utils.getHashPassword("password_test_5"), "DevoXX", 40,"user5"));
         return userList;
     }
     public static ArrayList<WordPair> getWordPairList(){

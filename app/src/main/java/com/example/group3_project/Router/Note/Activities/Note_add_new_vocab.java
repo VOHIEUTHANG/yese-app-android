@@ -12,6 +12,7 @@ import com.example.group3_project.Database.AppDatabase.AppDatabase;
 import com.example.group3_project.Database.Entity.Vocab;
 import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
+import com.example.group3_project.Utils.Utils;
 
 import java.util.Date;
 
@@ -76,8 +77,7 @@ public class Note_add_new_vocab extends AppCompatActivity {
     }
 
     public String getCurrentUserLogin(){
-        String username = ((MyApplication) this.getApplication()).getUsername();
-        return username;
+        return Utils.getUsername(this);
     }
 
 
