@@ -1,11 +1,13 @@
 package com.example.group3_project.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.se.omapi.Session;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,8 @@ import com.example.group3_project.Database.AppDatabase.AppDatabase;
 import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
+import com.example.group3_project.SessionManagement;
+import com.example.group3_project.SubScreen.SubActivity_SignInSignUp;
 import com.example.group3_project.Utils.Utils;
 
 
@@ -27,16 +31,15 @@ public class UserFragment extends Fragment {
     private String username;
 
 
-    TextView tvUserStreakCount,tvUserDiamondCount;
     EditText edUsername,edDisplayName,edUserEmail;
     ImageView ivUserAvatar;
-    Button btnUpdateUser;
+    Button btnUpdateUser,btnLogout;
     User user;
 
     public UserFragment() {
     }
 
-    public static UserFragment newInstance(String param1, String param2) {
+    public static UserFragment newInstance() {
         UserFragment fragment = new UserFragment();
         return fragment;
     }
@@ -55,13 +58,12 @@ public class UserFragment extends Fragment {
     }
 
     private void setControl() {
-        tvUserStreakCount = getView().findViewById(R.id.tvUserStreakCount);
-        tvUserDiamondCount = getView().findViewById(R.id.tvUserDiamondCount);
         edUsername = getView().findViewById(R.id.edUsername);
         edDisplayName = getView().findViewById(R.id.edDisplayName);
         edUserEmail = getView().findViewById(R.id.edUserEmail);
         ivUserAvatar = getView().findViewById(R.id.ivUserAvatar);
         btnUpdateUser = getView().findViewById(R.id.btnUpdateUser);
+        btnLogout = getView().findViewById(R.id.btnLogout);
 
     }
 
@@ -80,10 +82,19 @@ public class UserFragment extends Fragment {
             }
             updateUser(email,displayName);
         });
+        btnLogout.setOnClickListener(item -> {
+            SessionManagement sessionManagement = new SessionManagement(getContext());
+            sessionManagement.logout();
+            try {
+                Toast.makeText(getContext(), "Đăng xuất thành công !", Toast.LENGTH_SHORT).show();
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            startActivity(new Intent(requireContext(), SubActivity_SignInSignUp.class));
+        });
         user = AppDatabase.getInstance(requireContext()).userDao().findOneUserByUsername(username);
         if(user != null){
-            tvUserStreakCount.setText(String.valueOf(user.getStreak()));
-            tvUserDiamondCount.setText(String.valueOf(user.getDiamond()));
             edUsername.setText(user.getUsername());
             edDisplayName.setText(user.getDisplayName());
             if(user.getEmail() != null){

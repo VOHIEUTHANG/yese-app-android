@@ -34,9 +34,14 @@
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/bg_white_top_border_radius.xml" value="0.218" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/bottom_shadow_gradient.xml" value="0.2395" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_custom.xml" value="0.23" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_custom_white.xml" value="0.224" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_danger.xml" value="0.23" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_default.xml" value="0.142" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_main.xml" value="0.2395" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_radio_custom.xml" value="0.224" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_radio_customs_text_color.xml" value="0.224" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_radio_normal.xml" value="0.224" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_radio_selected.xml" value="0.224" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_rounded-full.xml" value="0.125" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_rounded_full.xml" value="0.125" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/drawable/button_wrong.xml" value="0.142" />
@@ -59,6 +64,7 @@
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_note_add_new_vocab.xml" value="0.3592592592592593" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_note_update_vocap.xml" value="0.34057971014492755" />
+        <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_sub_choose_level.xml" value="0.33" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_sub_sign_in_sign_up.xml" value="0.33" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/activity_sub_start_game.xml" value="0.33" />
         <entry key="..\:/JavaAndroi/Projects/Project/app/src/main/res/layout/bg_primary_top_border_radius.xml" value="0.2980072463768116" />

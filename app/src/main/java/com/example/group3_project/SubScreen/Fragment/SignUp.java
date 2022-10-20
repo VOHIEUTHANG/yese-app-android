@@ -14,10 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.group3_project.Database.AppDatabase.AppDatabase;
+import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.R;
 
+import java.util.concurrent.ExecutionException;
+
 public class SignUp extends Fragment {
-    EditText etUsername, etPassword,etDisplayName,etEmail;
+    EditText etUsername, etPassword, etDisplayName, etEmail;
     Button btnSignUp;
 
     @Override
@@ -55,10 +59,15 @@ public class SignUp extends Fragment {
                     if (username.length() == 0 || password.length() == 0 || email.length() == 0 || displayName.length() == 0) {
                         Toast.makeText(requireContext(), "Vui lòng điền đầy đủ thông tin tài khoản !", Toast.LENGTH_SHORT).show();
                     } else {
-                        Log.d("DEVO", username);
-                        Log.d("DEVO", password);
-                        Log.d("DEVO", email);
-                        Log.d("DEVO", displayName);
+                        User user = new User(username, displayName, password, email, 0, 0, "default_avatar");
+                        try {
+                            AppDatabase.getInstance(requireContext()).userDao().insertOneUser(user);
+                            Toast.makeText(requireContext(), "Register successful !", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(requireContext(), "Register failure, try again !", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 }
         );

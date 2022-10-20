@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
     private void setEvent() {
         btnInitData.setOnClickListener(view ->{
 //            Utils.deleteDatabase(requireContext());
-            initData();
+//            initData();
         });
     }
 

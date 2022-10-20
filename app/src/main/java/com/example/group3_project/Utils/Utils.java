@@ -6,8 +6,10 @@ import android.util.Patterns;
 import android.widget.Toast;
 
 import com.example.group3_project.Database.AppDatabase.AppDatabase;
+import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.Database.Entity.WordPair;
 import com.example.group3_project.MyApplication;
+import com.example.group3_project.SessionManagement;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,4 +26,12 @@ public class Utils {
     public static void deleteDatabase(Context applicationContext){
         applicationContext.deleteDatabase("yese.db");
     }
+
+    public static User getCurrentUser(Context context){
+        SessionManagement sessionManagement = new SessionManagement(context);
+        String username = sessionManagement.getUsername();
+        if(username == null) return null;
+        return AppDatabase.getInstance(context).userDao().findOneUserByUsername(username);
+    }
+
 }

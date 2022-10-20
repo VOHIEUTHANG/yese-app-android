@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "User")
 public class User {
-
     @PrimaryKey
     @NonNull
     private String username;
@@ -22,6 +21,8 @@ public class User {
     private int diamond;
     @ColumnInfo(defaultValue = "default_avatar")
     private String avatar;
+//    Level 1  -> 3 ; from mới học = 1, sơ cấp = 2 to trung cấp = 3
+    private int level;
 
     public User(String username, String displayName, String password, String email, int streak, int diamond, String avatar) {
         this.username = username;
@@ -48,6 +49,14 @@ public class User {
     }
 
     public User(String displayName, int diamond , String avatar) {
+        this.displayName = displayName;
+        this.diamond = diamond;
+        this.avatar = avatar;
+    }
+
+    public User(String username,String displayName, String avatar, int diamond ,int streak ) {
+        this.username = username;
+        this.streak = streak;
         this.displayName = displayName;
         this.diamond = diamond;
         this.avatar = avatar;
@@ -107,6 +116,14 @@ public class User {
         this.diamond = diamond;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -117,6 +134,7 @@ public class User {
                 ", streak=" + streak +
                 ", diamond=" + diamond +
                 ", avatar='" + avatar + '\'' +
+                ", level=" + level +
                 '}';
     }
 }
