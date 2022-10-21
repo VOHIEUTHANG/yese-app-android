@@ -8,9 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.group3_project.Database.AppDatabase.AppDatabase;
 import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.Fragment.BookFragment;
 import com.example.group3_project.Fragment.GameFragment;
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser != null){
             tvStreakCount.setText(String.valueOf(currentUser.getStreak()));
             tvDiamondCount.setText(String.valueOf(currentUser.getDiamond()));
-            ivUserAvatar.setImageResource(Utils.getResourceId(this,currentUser.getAvatar()));
+            ivUserAvatar.setImageResource(Utils.getDrawableResourceIdFromFileName(this,currentUser.getAvatar()));
         }
     }
 

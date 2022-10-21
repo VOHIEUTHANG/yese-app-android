@@ -1,25 +1,25 @@
 package com.example.group3_project.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.se.omapi.Session;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.example.group3_project.Database.AppDatabase.AppDatabase;
 import com.example.group3_project.Database.Entity.User;
-import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
 import com.example.group3_project.SessionManagement;
 import com.example.group3_project.SubScreen.SubActivity_SignInSignUp;
@@ -28,6 +28,8 @@ import com.example.group3_project.Utils.Utils;
 
 public class UserFragment extends Fragment {
 
+    AudioManager audioManager;
+    SeekBar sbAdjustVolume;
     EditText edUsername,edDisplayName,edUserEmail;
     ImageView ivUserAvatar;
     Button btnUpdateUser,btnLogout;
@@ -61,11 +63,38 @@ public class UserFragment extends Fragment {
         ivUserAvatar = getView().findViewById(R.id.ivUserAvatar);
         btnUpdateUser = getView().findViewById(R.id.btnUpdateUser);
         btnLogout = getView().findViewById(R.id.btnLogout);
+        sbAdjustVolume = getView().findViewById(R.id.sbAdjustVolume);
+    }
 
+    public void configSeekbar(){
+        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        int currentValue = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        sbAdjustVolume.setMax(maxVolume);
+        sbAdjustVolume.setProgress(currentValue);
     }
 
     private void setEvent() {
+//      Khởi tạo audio management
+        audioManager = (AudioManager) requireContext().getSystemService(Context.AUDIO_SERVICE);
+        configSeekbar();
         initUserInfor();
+        sbAdjustVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,i,0);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         btnUpdateUser.setOnClickListener(item->{
             String displayName = edDisplayName.getText().toString().trim();
             String email = edUserEmail.getText().toString().trim();
@@ -107,9 +136,9 @@ public class UserFragment extends Fragment {
                 edUserEmail.setText(user.getEmail());
             }
             if(user.getAvatar() != null){
-                ivUserAvatar.setImageResource(Utils.getResourceId(requireContext(),user.getAvatar()));
+                ivUserAvatar.setImageResource(Utils.getDrawableResourceIdFromFileName(requireContext(),user.getAvatar()));
             }else{
-                ivUserAvatar.setImageResource(Utils.getResourceId(requireContext(),"default_avatar"));
+                ivUserAvatar.setImageResource(Utils.getDrawableResourceIdFromFileName(requireContext(),"default_avatar"));
             }
         }else{
             Toast.makeText(requireContext(), "User not found !", Toast.LENGTH_SHORT).show();

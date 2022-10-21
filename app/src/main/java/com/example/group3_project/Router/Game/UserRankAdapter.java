@@ -1,8 +1,6 @@
 package com.example.group3_project.Router.Game;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.example.group3_project.Database.Entity.User;
-import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
 import com.example.group3_project.Utils.Utils;
 
@@ -62,7 +57,7 @@ public class UserRankAdapter extends ArrayAdapter {
 
         userDisplayName.setText(currentUser.getDisplayName());
         userRank.setText("Top: " + (position + 1));
-        userAvatar.setImageResource(Utils.getResourceId(context, currentUser.getAvatar()));
+        userAvatar.setImageResource(Utils.getDrawableResourceIdFromFileName(context, currentUser.getAvatar()));
         userDiamond.setText(String.valueOf(currentUser.getDiamond()));
 
         return convertView;

@@ -13,19 +13,35 @@
         android:orientation="vertical"
         android:background="@color/white"
         >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Home Page"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            />
         <Button
             android:id="@+id/btnInitData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="initData"
+            android:paddingVertical="16dp"
+            android:textStyle="bold"
+            android:background="@drawable/button_main"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            />
+        <Button
+            android:id="@+id/btnPlaySong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:paddingVertical="16dp"
+            android:textStyle="bold"
+            android:background="@drawable/button_main"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            />
+        <Button
+            android:id="@+id/btnPauseSong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pause"
             android:paddingVertical="16dp"
             android:textStyle="bold"
             android:background="@drawable/button_main"

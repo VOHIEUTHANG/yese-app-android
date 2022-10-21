@@ -18,9 +18,13 @@ import java.util.List;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class Utils {
-    public static int getResourceId(Context context, String name) {
+    public static int getDrawableResourceIdFromFileName(Context context, String name) {
         name = name.toLowerCase();
         return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+    }
+    public static int getRawResourceIdFromFileName(Context context, String name) {
+        name = name.toLowerCase();
+        return context.getResources().getIdentifier(name, "raw", context.getPackageName());
     }
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());

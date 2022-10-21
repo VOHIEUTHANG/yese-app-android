@@ -16,7 +16,7 @@ public interface UserDao {
 
     @Transaction
     @Query("SELECT * FROM User")
-    List<UserWithVocabs> getAllUser();
+    List<User> getAllUser();
 
     @Query("SELECT * FROM User order by diamond desc")
     List<User> getAllUserAndSortByDiamondDesc();

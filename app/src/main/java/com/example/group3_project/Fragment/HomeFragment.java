@@ -1,5 +1,6 @@
 package com.example.group3_project.Fragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,8 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    Button btnInitData;
+    Button btnInitData,btnPlay,btnPause;
+    MediaPlayer player;
 
     public HomeFragment() {
     }
@@ -59,11 +61,51 @@ public class HomeFragment extends Fragment {
 //            Utils.deleteDatabase(requireContext());
 //            initData();
         });
+        btnPlay.setOnClickListener(view->{
+            if(player == null){
+                player = MediaPlayer.create(requireContext(),Utils.getRawResourceIdFromFileName(requireContext(),"music"));
+            }
+            player.start();
+//            player.setOnCompletionListener(mediaPlayer -> {
+//                stopPlayer();
+//            });
+        });
+        btnPause.setOnClickListener(view->{
+            if(player != null){
+                player.pause();
+            }else{
+                Toast.makeText(requireContext(), "player is null value", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        new MyApplication().setPalyer(player);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        player = MyApplication.getPlayer();
+    }
+
+    //    public void stopPlayer(){
+//        if(player!=null){
+//            player.release();
+//            player = null;
+//            Toast.makeText(requireContext(), "Mediaplayer released !", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
 
 
     private void setControl() {
         btnInitData = getView().findViewById(R.id.btnInitData);
+        btnPlay = getView().findViewById(R.id.btnPlaySong);
+        btnPause = getView().findViewById(R.id.btnPauseSong);
     }
 
     public void addWordPairData(){
