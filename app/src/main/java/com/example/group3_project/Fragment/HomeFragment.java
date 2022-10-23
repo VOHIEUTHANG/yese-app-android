@@ -6,14 +6,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.group3_project.Database.AppDatabase.AppDatabase;
+import com.example.group3_project.Database.Entity.PackageWithQuestions;
 import com.example.group3_project.Database.Entity.QuestionPackage;
 import com.example.group3_project.Database.Entity.Question;
 import com.example.group3_project.Database.Entity.QuestionType;
@@ -22,6 +27,7 @@ import com.example.group3_project.Database.Entity.Vocab;
 import com.example.group3_project.Database.Entity.WordPair;
 import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
+import com.example.group3_project.Router.Home.QuestionPackageAdapter;
 import com.example.group3_project.Utils.InitialData;
 import com.example.group3_project.Utils.Utils;
 
@@ -32,6 +38,10 @@ public class HomeFragment extends Fragment {
 
 //    Button btnInitData, btnPlay, btnPause;
     MediaPlayer player;
+    ListView lvPackageListLevel1,lvPackageListLevel2;
+    QuestionPackageAdapter questionPackageAdapterLevel1,questionPackageAdapterLevel2;
+    List<QuestionPackage> packageListForLevel1;
+    List<QuestionPackage> packageListForLevel2;
 
     public HomeFragment() {
     }
@@ -44,6 +54,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -58,21 +69,25 @@ public class HomeFragment extends Fragment {
         setEvent();
     }
 
+    private void setControl() {
+        lvPackageListLevel1 = getView().findViewById(R.id.lvPackageListLevel1);
+        lvPackageListLevel2 = getView().findViewById(R.id.lvPackageListLevel2);
+    }
+
     private void setEvent() {
 //    demoFeature();
+        packageListForLevel1 = getAllPackagesByLevel(1);
+        packageListForLevel2 = getAllPackagesByLevel(2);
+        questionPackageAdapterLevel1 = new QuestionPackageAdapter( requireContext(), R.layout.home_layout_package, packageListForLevel1);
+        questionPackageAdapterLevel2 = new QuestionPackageAdapter(requireContext(), R.layout.home_layout_package,packageListForLevel2 );
+        lvPackageListLevel1.setAdapter(questionPackageAdapterLevel1);
+        lvPackageListLevel2.setAdapter(questionPackageAdapterLevel2);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        new MyApplication().setPalyer(player);
+    public List<QuestionPackage> getAllPackagesByLevel(int level){
+        return AppDatabase.getInstance(requireContext()).packageDao().getAllPackagesByLevel(level);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        player = MyApplication.getPlayer();
-    }
 
 //    public void demoFeature(){
 //        btnInitData.setOnClickListener(view -> {
@@ -106,11 +121,7 @@ public class HomeFragment extends Fragment {
 //    }
 
 
-    private void setControl() {
-//        btnInitData = getView().findViewById(R.id.btnInitData);
-//        btnPlay = getView().findViewById(R.id.btnPlaySong);
-//        btnPause = getView().findViewById(R.id.btnPauseSong);
-    }
+
 
     public void addWordPairData() {
         List<WordPair> wordPairList = new ArrayList<>();
@@ -190,10 +201,10 @@ public class HomeFragment extends Fragment {
     }
 
     public void initData() {
-        addWordPairData();
-        addUserData();
-        addVocabsData();
-        addQuestionTypeData();
+//        addWordPairData();
+//        addUserData();
+//        addVocabsData();
+//        addQuestionTypeData();
         addPackageData();
 //        addQuestionList();
     }

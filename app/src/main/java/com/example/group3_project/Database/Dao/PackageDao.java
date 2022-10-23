@@ -17,6 +17,8 @@ public interface PackageDao {
     void insertListPackage(List<QuestionPackage> packageList);
 
     @Transaction
-    @Query("SELECT * FROM QuestionPackage")
-    public List<PackageWithQuestions> getAllPackage();
+    @Query("SELECT * FROM QuestionPackage where level = :level")
+    public List<QuestionPackage> getAllPackagesByLevel(int level);
+
+
 }

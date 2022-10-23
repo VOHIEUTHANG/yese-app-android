@@ -102,6 +102,11 @@ public class InitialData {
         packageList.add(new QuestionPackage(2,"Chào hỏi", "ic_home_greeting", 1,0));
         packageList.add(new QuestionPackage(3,"Giới thiệu", "ic_home_introduce", 1, 0));
         packageList.add(new QuestionPackage(4,"Gia đình", "ic_home_family", 1, 0));
+
+        packageList.add(new QuestionPackage(5,"Gặp gỡ", "ic_home_meet", 2, 1));
+        packageList.add(new QuestionPackage(6,"Vận động", "ic_home_activity", 2, 1));
+        packageList.add(new QuestionPackage(7,"Du lịch", "ic_home_travel", 2, 1));
+        packageList.add(new QuestionPackage(8,"Mua sắm", "ic_home_shopping", 2, 1));
         return packageList;
     }
 

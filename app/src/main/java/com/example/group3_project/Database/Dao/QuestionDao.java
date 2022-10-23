@@ -2,6 +2,7 @@ package com.example.group3_project.Database.Dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.Query;
 
 import com.example.group3_project.Database.Entity.Question;
 
@@ -14,4 +15,7 @@ public interface QuestionDao {
 
     @Insert
     void insertQuestion(Question question);
+
+    @Query("SELECT count(id) from Question where rk_packageID = :packageID")
+    int getQuestionCountByPackageID(int packageID);
 }

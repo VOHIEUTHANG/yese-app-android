@@ -1,29 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".Fragment.HomeFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:padding="10dp"
-        android:orientation="vertical"
-        android:background="@color/white"
-        >
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Level 1"
-            android:textAlignment="center"
-            android:layout_marginBottom="20dp"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="@color/text_color_light"
-            />
-    </LinearLayout>
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-</FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Level 1"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color_light"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/lvPackageListLevel1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="10.0sp"
+                    tools:listitem="@layout/home_layout_package" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Level 2"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color_light"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/lvPackageListLevel2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/home_layout_package"
+                    />
+            </LinearLayout>
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginBottom="10dp"-->
+            <!--                android:orientation="vertical">-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginBottom="20dp"-->
+            <!--                    android:text="Level 3"-->
+            <!--                    android:textAlignment="center"-->
+            <!--                    android:textColor="@color/text_color_light"-->
+            <!--                    android:textSize="25dp"-->
+            <!--                    android:textStyle="bold" />-->
+
+            <!--                <androidx.recyclerview.widget.RecyclerView-->
+            <!--                    android:id="@+id/rcvPackageListLevel3"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content" />-->
+            <!--            </LinearLayout>-->
+
+        </LinearLayout>
+
+</ScrollView>
