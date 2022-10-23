@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCurrentUserView() {
-        currentUser = getCurrentUser();
+//        currentUser = getCurrentUser();
         if(currentUser != null){
             tvStreakCount.setText(String.valueOf(currentUser.getStreak()));
             tvDiamondCount.setText(String.valueOf(currentUser.getDiamond()));
@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public User getCurrentUser(){
-        return Utils.getCurrentUser(this);
-    }
+//    public User getCurrentUser(){
+//        return Utils.getCurrentUser(this);
+//    }
 
 }

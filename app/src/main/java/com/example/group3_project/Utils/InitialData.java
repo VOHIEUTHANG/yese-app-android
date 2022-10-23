@@ -1,5 +1,8 @@
 package com.example.group3_project.Utils;
 
+import com.example.group3_project.Database.Entity.QuestionPackage;
+import com.example.group3_project.Database.Entity.Question;
+import com.example.group3_project.Database.Entity.QuestionType;
 import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.Database.Entity.Vocab;
 import com.example.group3_project.Database.Entity.WordPair;
@@ -82,6 +85,33 @@ public class InitialData {
         vocabList.add(new Vocab("stock","noun","cổ phần",username,new Date()));
 
         return vocabList;
+    }
+
+    public static ArrayList<QuestionType> getQuestionTypeList(){
+        ArrayList<QuestionType> questionTypeArrayList = new ArrayList<>();
+        questionTypeArrayList.add(new QuestionType(1,"Nhập lại nội dung bạn vừa nghe ?"));
+        questionTypeArrayList.add(new QuestionType(2,"Dịch từ ?"));
+        questionTypeArrayList.add(new QuestionType(3,"Bạn nghe được gì ?"));
+        questionTypeArrayList.add(new QuestionType(4,"Làm sao để nói "));
+        return questionTypeArrayList;
+    }
+
+    public static ArrayList<QuestionPackage> getPackageList(){
+        ArrayList<QuestionPackage> packageList = new ArrayList<>();
+        packageList.add(new QuestionPackage(1,"Cơ bản", "ic_home_basic", 1, 0));
+        packageList.add(new QuestionPackage(2,"Chào hỏi", "ic_home_greeting", 1,0));
+        packageList.add(new QuestionPackage(3,"Giới thiệu", "ic_home_introduce", 1, 0));
+        packageList.add(new QuestionPackage(4,"Gia đình", "ic_home_family", 1, 0));
+        return packageList;
+    }
+
+    public static ArrayList<Question> getQuestionList(){
+        ArrayList<Question> questionList = new ArrayList<>();
+        questionList.add(new Question(1,1,"package1_basic_grass", "grass"));
+        questionList.add(new Question(2,1,"ic_home_package1_basic_hand", "Bàn tay", "hand", 0));
+        questionList.add(new Question(3,1,"package1_basic_late","let lay late low","late"));
+        questionList.add(new Question(4,1,"lớp học", "class glass crass last", "class", true));
+        return questionList;
     }
 
 }

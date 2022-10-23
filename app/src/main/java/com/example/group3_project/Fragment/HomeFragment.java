@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.group3_project.Database.AppDatabase.AppDatabase;
+import com.example.group3_project.Database.Entity.QuestionPackage;
+import com.example.group3_project.Database.Entity.Question;
+import com.example.group3_project.Database.Entity.QuestionType;
 import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.Database.Entity.Vocab;
 import com.example.group3_project.Database.Entity.WordPair;
@@ -23,12 +26,11 @@ import com.example.group3_project.Utils.InitialData;
 import com.example.group3_project.Utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    Button btnInitData,btnPlay,btnPause;
+//    Button btnInitData, btnPlay, btnPause;
     MediaPlayer player;
 
     public HomeFragment() {
@@ -57,27 +59,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setEvent() {
-        btnInitData.setOnClickListener(view ->{
-//            Utils.deleteDatabase(requireContext());
-//            initData();
-        });
-        btnPlay.setOnClickListener(view->{
-            if(player == null){
-                player = MediaPlayer.create(requireContext(),Utils.getRawResourceIdFromFileName(requireContext(),"music"));
-            }
-            player.start();
-//            player.setOnCompletionListener(mediaPlayer -> {
-//                stopPlayer();
-//            });
-        });
-        btnPause.setOnClickListener(view->{
-            if(player != null){
-                player.pause();
-            }else{
-                Toast.makeText(requireContext(), "player is null value", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+//    demoFeature();
     }
 
     @Override
@@ -92,6 +74,29 @@ public class HomeFragment extends Fragment {
         player = MyApplication.getPlayer();
     }
 
+//    public void demoFeature(){
+//        btnInitData.setOnClickListener(view -> {
+////            Utils.deleteDatabase(requireContext());
+////            initData();
+//        });
+//        btnPlay.setOnClickListener(view -> {
+//            if (player == null) {
+//                player = MediaPlayer.create(requireContext(), Utils.getRawResourceIdFromFileName(requireContext(), "music"));
+//            }
+//            player.start();
+////            player.setOnCompletionListener(mediaPlayer -> {
+////                stopPlayer();
+////            });
+//        });
+//        btnPause.setOnClickListener(view -> {
+//            if (player != null) {
+//                player.pause();
+//            } else {
+//                Toast.makeText(requireContext(), "player is null value", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
     //    public void stopPlayer(){
 //        if(player!=null){
 //            player.release();
@@ -101,20 +106,19 @@ public class HomeFragment extends Fragment {
 //    }
 
 
-
     private void setControl() {
-        btnInitData = getView().findViewById(R.id.btnInitData);
-        btnPlay = getView().findViewById(R.id.btnPlaySong);
-        btnPause = getView().findViewById(R.id.btnPauseSong);
+//        btnInitData = getView().findViewById(R.id.btnInitData);
+//        btnPlay = getView().findViewById(R.id.btnPlaySong);
+//        btnPause = getView().findViewById(R.id.btnPauseSong);
     }
 
-    public void addWordPairData(){
+    public void addWordPairData() {
         List<WordPair> wordPairList = new ArrayList<>();
         wordPairList.addAll(InitialData.getWordPairList());
         try {
             AppDatabase.getInstance(requireContext()).wordPairDao().insertListWordPair(wordPairList);
             Toast.makeText(requireContext(), "Insert word list succeffully !", Toast.LENGTH_SHORT).show();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(requireContext(), "Insert word list failure !", Toast.LENGTH_SHORT).show();
         }
@@ -126,7 +130,7 @@ public class HomeFragment extends Fragment {
         try {
             AppDatabase.getInstance(requireContext()).userDao().insertListUser(userList);
             Toast.makeText(requireContext(), "Insert user list succeffully !", Toast.LENGTH_SHORT).show();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(requireContext(), "Insert user list failure !", Toast.LENGTH_SHORT).show();
         }
@@ -134,28 +138,67 @@ public class HomeFragment extends Fragment {
 
     private void addVocabsData() {
         List<Vocab> vocabList = new ArrayList<>();
-        if(getCurrentUserLogin() != null){
+        if (getCurrentUserLogin() != null) {
             vocabList.addAll(InitialData.getVocabList(getCurrentUserLogin()));
             try {
                 AppDatabase.getInstance(requireContext()).vocabDao().insertVocabList(vocabList);
                 Toast.makeText(requireContext(), "Insert vocabs list succeffully !", Toast.LENGTH_SHORT).show();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(requireContext(), "Insert vocabs list failure !", Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             Toast.makeText(requireContext(), "User is not logged in yet !", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    public void initData(){
+    private void addQuestionTypeData() {
+        List<QuestionType> questionTypeList = new ArrayList<>();
+        questionTypeList.addAll(InitialData.getQuestionTypeList());
+        try {
+            AppDatabase.getInstance(requireContext()).questionTypeDao().insertListType(questionTypeList);
+            Toast.makeText(requireContext(), "Insert question type list succeffully !", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(requireContext(), "Insert question type list failure !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void addPackageData() {
+        List<QuestionPackage> questionPackageList = new ArrayList<>();
+        questionPackageList.addAll(InitialData.getPackageList());
+        try {
+            AppDatabase.getInstance(requireContext()).packageDao().insertListPackage(questionPackageList);
+            Toast.makeText(requireContext(), "Insert package list succeffully !", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(requireContext(), "Insert package list failure !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void addQuestionList() {
+        List<Question> questions = new ArrayList<>();
+        questions.addAll(InitialData.getQuestionList());
+        try {
+            AppDatabase.getInstance(requireContext()).questionDao().insertListQuestion(questions);
+            Toast.makeText(requireContext(), "Insert question list successful !", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(requireContext(), "Insert question list failure !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void initData() {
         addWordPairData();
         addUserData();
         addVocabsData();
+        addQuestionTypeData();
+        addPackageData();
+//        addQuestionList();
     }
 
-    public String getCurrentUserLogin(){
+    public String getCurrentUserLogin() {
         return Utils.getUsername(requireContext());
     }
 
