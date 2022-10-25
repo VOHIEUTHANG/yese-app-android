@@ -33,6 +33,7 @@ public class SessionManagement {
 
     public void logout() {
         editor.putBoolean("LOGIN_STATUS", false);
+        editor.putString("USERNAME", null);
     }
 
 }

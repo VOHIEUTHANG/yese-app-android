@@ -55,11 +55,11 @@ public class Game_WordMatchActivity extends AppCompatActivity {
     private int correctAnswerCount = 0;
 
     private int vnKey = -1, enKey = -1;
-    private static int hearts = 3;
-    private static int wordpairPackageNumber = 1;
-    private static final int wordsCountPerAScreen = 6;
-    private static int score = 0;
-    private static int reciveDiamond;
+    private int hearts = 3;
+    private int wordpairPackageNumber = 1;
+    private final int wordsCountPerAScreen = 6;
+    private int score = 0;
+    private int reciveDiamond;
 
     private boolean isShowDialog = false;
 

@@ -112,10 +112,22 @@ public class InitialData {
 
     public static ArrayList<Question> getQuestionList(){
         ArrayList<Question> questionList = new ArrayList<>();
-        questionList.add(new Question(1,1,"package1_basic_grass", "grass"));
-        questionList.add(new Question(2,1,"ic_home_package1_basic_hand", "Bàn tay", "hand", 0));
-        questionList.add(new Question(3,1,"package1_basic_late","let lay late low","late"));
-        questionList.add(new Question(4,1,"lớp học", "class glass crass last", "class", true));
+//        questionList.add(new Question(1,1,"package1_basic_grass", "grass"));
+//        questionList.add(new Question(2,1,"ic_home_package1_basic_hand", "Bàn tay", "hand", 0));
+//        questionList.add(new Question(3,1,"package1_basic_late","let lay late","late"));
+//        questionList.add(new Question(4,1,"lớp học", "class glass crass", "class", true));
+//
+//        questionList.add(new Question(4,1,"dự án", "project document lesson", "project", true));
+//        questionList.add(new Question(2,1,"ic_home_package1_basic_truck", "xe tải", "truck", 0));
+//        questionList.add(new Question(1,1,"package1_basic_greeting", "greeting"));
+//        questionList.add(new Question(3,1,"package1_basic_create","late create cray","create"));
+
+//        Package 2
+
+        questionList.add(new Question(4,2,"sức khỏe", "health hell heart", "health", true));
+        questionList.add(new Question(2,2,"ic_home_package2_handshake", "bắt tay", "handshake", 0));
+        questionList.add(new Question(1,2,"package2_greeting_how_are_you", "how are you"));
+        questionList.add(new Question(3,2,"package2_greeting_dream","cream dream cry","dream"));
         return questionList;
     }
 

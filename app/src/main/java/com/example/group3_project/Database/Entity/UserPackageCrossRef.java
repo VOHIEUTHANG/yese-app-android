@@ -27,7 +27,6 @@ public class UserPackageCrossRef {
         this.correctAnswerCount = correctAnswerCount;
         this.isFinish = isFinish;
         this.answerAt = answerAt;
-
     }
 
     public int getIsFinish() {

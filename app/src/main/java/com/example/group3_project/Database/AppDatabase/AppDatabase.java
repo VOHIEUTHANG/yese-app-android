@@ -12,6 +12,7 @@ import com.example.group3_project.Database.Dao.PackageDao;
 import com.example.group3_project.Database.Dao.QuestionDao;
 import com.example.group3_project.Database.Dao.TypeDao;
 import com.example.group3_project.Database.Dao.UserDao;
+import com.example.group3_project.Database.Dao.UserPackageDao;
 import com.example.group3_project.Database.Dao.VocabDao;
 import com.example.group3_project.Database.Dao.WordPairDao;
 import com.example.group3_project.Database.Entity.QuestionPackage;
@@ -39,6 +40,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract PackageDao packageDao();
 
     public abstract TypeDao questionTypeDao();
+
+    public abstract UserPackageDao userPackageDao();
 
 
     public static synchronized AppDatabase getInstance(Context context) {

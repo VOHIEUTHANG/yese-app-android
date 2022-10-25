@@ -13,4 +13,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="select">Select Item</string>
     <string name="title_activity_sub_choose_level">SubActivity_ChooseLevel</string>
+    <string name="title_activity_home_start_lesstion">home_activity_start_lesstion</string>
 </resources>

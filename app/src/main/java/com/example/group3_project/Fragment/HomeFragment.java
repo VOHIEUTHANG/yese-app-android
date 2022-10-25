@@ -1,32 +1,28 @@
 package com.example.group3_project.Fragment;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.group3_project.Database.AppDatabase.AppDatabase;
-import com.example.group3_project.Database.Entity.PackageWithQuestions;
 import com.example.group3_project.Database.Entity.QuestionPackage;
 import com.example.group3_project.Database.Entity.Question;
 import com.example.group3_project.Database.Entity.QuestionType;
 import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.Database.Entity.Vocab;
 import com.example.group3_project.Database.Entity.WordPair;
-import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
+import com.example.group3_project.Router.Home.Activity.Home_StartLessonActivity;
 import com.example.group3_project.Router.Home.QuestionPackageAdapter;
 import com.example.group3_project.Utils.InitialData;
 import com.example.group3_project.Utils.Utils;
@@ -35,9 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
-//    Button btnInitData, btnPlay, btnPause;
-    MediaPlayer player;
     ListView lvPackageListLevel1,lvPackageListLevel2;
     QuestionPackageAdapter questionPackageAdapterLevel1,questionPackageAdapterLevel2;
     List<QuestionPackage> packageListForLevel1;
@@ -46,15 +39,17 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
     }
 
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        questionPackageAdapterLevel1.notifyDataSetChanged();
+        questionPackageAdapterLevel2.notifyDataSetChanged();
     }
 
     @Override
@@ -65,6 +60,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        initData();
         setControl();
         setEvent();
     }
@@ -75,53 +71,32 @@ public class HomeFragment extends Fragment {
     }
 
     private void setEvent() {
-//    demoFeature();
         packageListForLevel1 = getAllPackagesByLevel(1);
         packageListForLevel2 = getAllPackagesByLevel(2);
         questionPackageAdapterLevel1 = new QuestionPackageAdapter( requireContext(), R.layout.home_layout_package, packageListForLevel1);
         questionPackageAdapterLevel2 = new QuestionPackageAdapter(requireContext(), R.layout.home_layout_package,packageListForLevel2 );
         lvPackageListLevel1.setAdapter(questionPackageAdapterLevel1);
         lvPackageListLevel2.setAdapter(questionPackageAdapterLevel2);
+
+
+        lvPackageListLevel1.setOnItemClickListener((adapterView, view, i, l) -> {
+            QuestionPackage questionPackage = packageListForLevel1.get(i);
+            if(questionPackage.getIsLock() == 0){
+                Intent intent = new Intent(requireContext(), Home_StartLessonActivity.class);
+                Bundle extras = new Bundle();
+                extras.putSerializable("package", questionPackage);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }else{
+                Toast.makeText(requireContext(),questionPackage.getTopicName() + " packages is locked !", Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
     public List<QuestionPackage> getAllPackagesByLevel(int level){
         return AppDatabase.getInstance(requireContext()).packageDao().getAllPackagesByLevel(level);
     }
-
-
-//    public void demoFeature(){
-//        btnInitData.setOnClickListener(view -> {
-////            Utils.deleteDatabase(requireContext());
-////            initData();
-//        });
-//        btnPlay.setOnClickListener(view -> {
-//            if (player == null) {
-//                player = MediaPlayer.create(requireContext(), Utils.getRawResourceIdFromFileName(requireContext(), "music"));
-//            }
-//            player.start();
-////            player.setOnCompletionListener(mediaPlayer -> {
-////                stopPlayer();
-////            });
-//        });
-//        btnPause.setOnClickListener(view -> {
-//            if (player != null) {
-//                player.pause();
-//            } else {
-//                Toast.makeText(requireContext(), "player is null value", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-
-    //    public void stopPlayer(){
-//        if(player!=null){
-//            player.release();
-//            player = null;
-//            Toast.makeText(requireContext(), "Mediaplayer released !", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
-
-
 
     public void addWordPairData() {
         List<WordPair> wordPairList = new ArrayList<>();
@@ -205,8 +180,8 @@ public class HomeFragment extends Fragment {
 //        addUserData();
 //        addVocabsData();
 //        addQuestionTypeData();
-        addPackageData();
-//        addQuestionList();
+//        addPackageData();
+        addQuestionList();
     }
 
     public String getCurrentUserLogin() {

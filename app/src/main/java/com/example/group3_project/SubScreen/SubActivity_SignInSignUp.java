@@ -8,18 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.group3_project.Fragment.BookFragment;
-import com.example.group3_project.Fragment.GameFragment;
-import com.example.group3_project.Fragment.HomeFragment;
-import com.example.group3_project.Fragment.NoteFragment;
-import com.example.group3_project.Fragment.UserFragment;
 import com.example.group3_project.R;
 import com.example.group3_project.Router.Game.OnWordButtonClickListener;
 import com.example.group3_project.SubScreen.Fragment.Login;
 import com.example.group3_project.SubScreen.Fragment.SignUp;
-import com.example.group3_project.databinding.ActivityMainBinding;
 
 public class SubActivity_SignInSignUp extends AppCompatActivity {
     TextView loginFragment,signUpFragment;
@@ -35,6 +28,7 @@ public class SubActivity_SignInSignUp extends AppCompatActivity {
         loginFragment = findViewById(R.id.tvLogin);
         signUpFragment = findViewById(R.id.tvSignUp);
     }
+
 // Call back to switch to login fragment when user sign up success.
     public class switchToLoginFragmentCallBack implements OnWordButtonClickListener {
         @Override

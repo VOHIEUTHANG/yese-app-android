@@ -48,6 +48,13 @@ public class Vocab implements Serializable {
         this.rk_username = rk_username;
     }
 
+    public Vocab(@NonNull String words,  String means, String rk_username, Date createAt) {
+        this.words = words;
+        this.means = means;
+        this.rk_username = rk_username;
+        this.createAt = createAt;
+    }
+
     public String getRk_username() {return rk_username;}
 
     public void setRk_username(String rk_username) {

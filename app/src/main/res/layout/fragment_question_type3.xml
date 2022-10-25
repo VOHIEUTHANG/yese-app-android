@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Router.Home.Fragments.Home_QuestionType3Fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/primary"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            app:cardCornerRadius="60dp"
+            app:cardElevation="3dp">
+
+            <ImageView
+                android:id="@+id/ivT3Audiofile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:src="@drawable/ic_volume_white" />
+        </androidx.cardview.widget.CardView>
+
+        <RadioGroup
+            android:id="@+id/rgT3KeyAnswers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            >
+            <RadioButton
+                android:id="@+id/rbT3Key1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textAlignment="center"
+                android:button="@null"
+                android:textColor="@color/text_color_light"
+                android:textStyle="bold"
+                android:text="grass"
+                android:background="@drawable/button_radio_custom"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:paddingVertical="16dp"
+                />
+            <RadioButton
+                android:id="@+id/rbT3Key2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textAlignment="center"
+                android:button="@null"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_light"
+                android:text="dress"
+                android:background="@drawable/button_radio_custom"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:paddingVertical="16dp"
+                />
+            <RadioButton
+                android:id="@+id/rbT3Key3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_light"
+                android:button="@null"
+                android:textStyle="bold"
+                android:text="flag"
+                android:background="@drawable/button_radio_custom"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:paddingVertical="16dp"
+                />
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+</FrameLayout>

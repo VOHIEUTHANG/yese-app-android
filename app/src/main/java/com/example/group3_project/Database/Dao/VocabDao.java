@@ -30,6 +30,9 @@ public interface VocabDao {
     @Query("SELECT * FROM Vocab WHERE rk_username = :username AND words LIKE '%' || :subString || '%' ")
     List<Vocab> filterWordBySubString(String username, String subString);
 
+    @Query("SELECT count(*) FROM Vocab WHERE rk_username = :username AND words = :word")
+    int getVocabCountByUsernameAndWord(String username, String word);
+
     @Delete
     void deleteOneVocab(Vocab vocab);
 

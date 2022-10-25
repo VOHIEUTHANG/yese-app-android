@@ -18,4 +18,7 @@ public interface QuestionDao {
 
     @Query("SELECT count(id) from Question where rk_packageID = :packageID")
     int getQuestionCountByPackageID(int packageID);
+
+    @Query("SELECT * from Question where rk_packageID = :packageID")
+    List<Question> getQuestionListByPackageID(int packageID);
 }

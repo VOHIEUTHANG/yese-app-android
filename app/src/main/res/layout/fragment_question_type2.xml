@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Router.Home.Fragments.Home_QuestionType2Fragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/ivAddToNote"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_home_add_to_note"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_centerInParent="true"
+
+                android:shape="ring"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/ivT2QuestionIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_home_activity" />
+
+                    <TextView
+                        android:id="@+id/tvT2VnWord"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ball"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_color"
+                        android:textSize="23dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <EditText
+                android:id="@+id/etT2UserAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/custom_textarea"
+                android:gravity="top"
+                android:hint="Nhập vào bằng Tiếng anh"
+                android:inputType="text|textMultiLine"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="13dp"
+                android:textSize="22dp" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

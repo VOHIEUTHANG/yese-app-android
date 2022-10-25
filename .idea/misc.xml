@@ -4,23 +4,45 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Androi/Project/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/custom_textArea.xml" value="0.2265" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/custom_textarea.xml" value="0.2265" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/home_ic_family.xml" value="0.1235" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_check_finish.xml" value="0.2555" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_activity.xml" value="0.2295" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_add_to_note.xml" value="0.2265" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_basic.xml" value="0.1235" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_greeting.xml" value="0.1235" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_introduce.xml" value="0.1235" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_meet.xml" value="0.2295" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_package1_basic_hand.xml" value="0.1515" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_package1_basic_truck.xml" value="0.1155" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_package2_handshake.xml" value="0.2485" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_shopping.xml" value="0.2295" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_home_travel.xml" value="0.2295" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_lock.xml" value="0.2235" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_lock_open.xml" value="0.2225" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable-v24/ic_volume.xml" value="0.2265" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable/button_main.xml" value="0.2265" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable/button_white.xml" value="0.2265" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/drawable/ic_volume_white.xml" value="0.2265" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/activity_game_start_game.xml" value="0.29393115942028986" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/activity_home_learn_lesson.xml" value="0.33" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/activity_home_start_lesson.xml" value="0.28125" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/activity_home_start_lesstion.xml" value="0.25" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/activity_sub_choose_level.xml" value="0.28125" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/activity_sub_sign_in_sign_up.xml" value="0.3070652173913043" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/fragment_game.xml" value="0.27807971014492755" />
-        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/fragment_home.xml" value="0.28823529411764703" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/fragment_note.xml" value="0.17280524722502522" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/fragment_question_type1.xml" value="0.3070652173913043" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/fragment_question_type2.xml" value="0.28125" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/fragment_question_type3.xml" value="0.28125" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/fragment_question_type4.xml" value="0.28125" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/fragment_user.xml" value="0.3070652173913043" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/game_activity_word_match.xml" value="0.27807971014492755" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/game_layout_user_rank.xml" value="0.27807971014492755" />
         <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/game_layout_word_button.xml" value="0.27807971014492755" />
-        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/home_layout_package.xml" value="0.27807971014492755" />
+        <entry key="..\:/FigBug/yese-app-android/app/src/main/res/layout/home_layout_package.xml" value="0.33" />
         <entry key="..\:/JavaAndroi/FinalProject/Project/app/src/main/res/drawable/button_default.xml" value="0.1545" />
         <entry key="..\:/JavaAndroi/FinalProject/Project/app/src/main/res/drawable/custom_button.xml" value="0.1585" />
         <entry key="..\:/JavaAndroi/FinalProject/Project/app/src/main/res/drawable/custom_progress_bar.xml" value="0.24" />

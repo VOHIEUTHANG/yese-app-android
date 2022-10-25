@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.example.group3_project.Fragment.GameFragment;
 import com.example.group3_project.Fragment.HomeFragment;
 import com.example.group3_project.Fragment.NoteFragment;
 import com.example.group3_project.Fragment.UserFragment;
+import com.example.group3_project.SubScreen.SubActivity_SignInSignUp;
 import com.example.group3_project.Utils.Utils;
 import com.example.group3_project.databinding.ActivityMainBinding;
 
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setEvent(){
         setCurrentUserView();
+        checkUserLogin();
         initView();
     }
 
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCurrentUserView() {
-//        currentUser = getCurrentUser();
+        currentUser = getCurrentUser();
         if(currentUser != null){
             tvStreakCount.setText(String.valueOf(currentUser.getStreak()));
             tvDiamondCount.setText(String.valueOf(currentUser.getDiamond()));
@@ -98,8 +101,16 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-//    public User getCurrentUser(){
-//        return Utils.getCurrentUser(this);
-//    }
+    public void checkUserLogin(){
+        String username = Utils.getUsername(this);
+        if(username == null){
+            Intent intent = new Intent(this, SubActivity_SignInSignUp.class);
+        }
+    }
+
+
+    public User getCurrentUser(){
+        return Utils.getCurrentUser(this);
+    }
 
 }
