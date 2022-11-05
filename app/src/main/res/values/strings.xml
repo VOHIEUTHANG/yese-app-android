@@ -14,4 +14,5 @@
     <string name="select">Select Item</string>
     <string name="title_activity_sub_choose_level">SubActivity_ChooseLevel</string>
     <string name="title_activity_home_start_lesstion">home_activity_start_lesstion</string>
+    <string name="title_activity_notify">NotifyActivity</string>
 </resources>

@@ -344,6 +344,7 @@ public class Game_WordMatchActivity extends AppCompatActivity {
 
     public void showTimeoutGameDialog(){
         final Dialog dialog = new Dialog(this);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.game_layout_bottom_popup_timeout);
 
@@ -358,6 +359,7 @@ public class Game_WordMatchActivity extends AppCompatActivity {
 
     public void showWrongAnswerGameDialog(){
         final Dialog dialog = new Dialog(this);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.game_layout_bottom_popup_wrong_answer_time);
 
@@ -372,6 +374,7 @@ public class Game_WordMatchActivity extends AppCompatActivity {
 
     public void showAnswerAllQuestionsGameDialog(){
         final Dialog dialog = new Dialog(this);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.game_layout_bottom_popup_finish);
 

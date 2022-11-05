@@ -19,6 +19,18 @@ public interface QuestionDao {
     @Query("SELECT count(id) from Question where rk_packageID = :packageID")
     int getQuestionCountByPackageID(int packageID);
 
+    @Query("DELETE FROM Question WHERE rk_packageID = :packageID AND questionDataInsertType is not null")
+    int deleteInsertQuestionByPackageID(int packageID);
+
+    @Query("DELETE FROM Question WHERE questionDataInsertType is not null")
+    int deleteAllInsertQuestionByPackageID();
+
     @Query("SELECT * from Question where rk_packageID = :packageID")
     List<Question> getQuestionListByPackageID(int packageID);
+
+    @Query("SELECT * from Question where rk_packageID = :packageID AND questionDataInsertType is null")
+    List<Question> getQuestionListByPackageIDAndIsNormalType(int packageID);
+
+    @Query("SELECT * from Question where rk_packageID = :packageID AND questionDataInsertType is not null")
+    List<Question> getQuestionListByPackageIDAndIsInsertType(int packageID);
 }

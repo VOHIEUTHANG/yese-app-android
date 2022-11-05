@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.group3_project.Database.AppDatabase.AppDatabase;
+import com.example.group3_project.Database.Entity.DiamondGameHistory;
 import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
@@ -56,7 +57,13 @@ public class Game_ResultActivity extends AppCompatActivity {
                 userDiamond = Integer.parseInt(diamond);
                 tvDiamond.setText("+" + diamond);
                 tvDiamondCount.setText("Bạn đã nhận được "+ diamond + " kim cương");
-                updateUserDiamond();
+
+                String username = getCurrentUserLogin();
+                if(username !=null && username.length() > 0){
+
+                    updateUserDiamond();
+                    updateUserEarnDiamondHistory(username);
+                }
             }
         }
     }
@@ -78,12 +85,25 @@ public class Game_ResultActivity extends AppCompatActivity {
                 Toast.makeText(this, "Update user diamond failure !", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
-
         }else{
             Toast.makeText(this, "Error, User not found !", Toast.LENGTH_SHORT).show();
         }
 
     }
 
+    public void updateUserEarnDiamondHistory(String username){
+        String currentTime = Utils.getCurrentTime();
 
+        DiamondGameHistory diamondGameHistoryOfToday = AppDatabase.getInstance(this).diamondGameHistoryDao().getDiamondGameHistoryByUsernameAndDate(username, currentTime);
+        if(diamondGameHistoryOfToday != null){
+//      Update new history game
+            int previousDiamond = diamondGameHistoryOfToday.getDiamond();
+            diamondGameHistoryOfToday.setDiamond(previousDiamond + userDiamond);
+            AppDatabase.getInstance(this).diamondGameHistoryDao().updateUserDiamondHistory(diamondGameHistoryOfToday);
+        }else{
+//      Insert new history game
+        DiamondGameHistory diamondGameHistory = new DiamondGameHistory(username,userDiamond, currentTime);
+        AppDatabase.getInstance(this).diamondGameHistoryDao().insertUserDiamondHistory(diamondGameHistory);
+        }
+    }
 }

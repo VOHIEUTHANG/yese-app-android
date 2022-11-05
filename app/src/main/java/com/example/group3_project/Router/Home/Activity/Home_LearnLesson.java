@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
@@ -19,10 +20,12 @@ import com.example.group3_project.Database.Entity.QuestionPackage;
 import com.example.group3_project.Database.Entity.UserPackageCrossRef;
 import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
+import com.example.group3_project.Router.Game.Activities.Game_ResultActivity;
 import com.example.group3_project.Router.Home.Fragments.Home_QuestionType1Fragment;
 import com.example.group3_project.Router.Home.Fragments.Home_QuestionType2Fragment;
 import com.example.group3_project.Router.Home.Fragments.Home_QuestionType3Fragment;
 import com.example.group3_project.Router.Home.Fragments.Home_QuestionType4Fragment;
+import com.example.group3_project.Router.Note.Activities.Note_update_vocap;
 import com.example.group3_project.Utils.Utils;
 
 import java.util.Date;
@@ -109,23 +112,34 @@ public class Home_LearnLesson extends AppCompatActivity {
             currentQuestionIndex++;
             initView();
         }else{
-//            finish();
-            int userAnswerPackageCount = AppDatabase.getInstance(this).userPackageDao().UserAnswerPackageCount(Utils.getUsername(this),questionPackage.getId());
-
-            UserPackageCrossRef userAnswerResult = new UserPackageCrossRef(Utils.getUsername(this),questionPackage.getId(),100,correctAnswerCount,1,new Date());
-
-            if(userAnswerPackageCount == 0){
-//                User not answered package yet => create user answer result
-                AppDatabase.getInstance(this).userPackageDao().insertAnswerPackage(userAnswerResult);
-            }else{
-//               User answered package => update user answer result
-                AppDatabase.getInstance(this).userPackageDao().updateAnswerPackage(userAnswerResult);
-            }
-
-            finish();
+            finishLesson();
         }
     }
 
+    public void finishLesson(){
+        //            finish();
+        int userAnswerPackageCount = AppDatabase.getInstance(this).userPackageDao().UserAnswerPackageCount(Utils.getUsername(this),questionPackage.getId());
+
+        UserPackageCrossRef userAnswerResult = new UserPackageCrossRef(Utils.getUsername(this),questionPackage.getId(),100,correctAnswerCount,1,new Date());
+
+        if(userAnswerPackageCount == 0){
+//                User not answered package yet => create user answer result
+            AppDatabase.getInstance(this).userPackageDao().insertAnswerPackage(userAnswerResult);
+        }else{
+//               User answered package => update user answer result
+            AppDatabase.getInstance(this).userPackageDao().updateAnswerPackage(userAnswerResult);
+        }
+
+        Intent intent = new Intent(this, Home_AnswerResult.class);
+        Bundle extras = new Bundle();
+
+        extras.putString("packageIcon", questionPackage.getIcon());
+        extras.putString("packageTopic",questionPackage.getTopicName());
+        extras.putString("answerResult", String.valueOf(correctAnswerCount)  + "/" + String.valueOf(questionCount));
+        intent.putExtras(extras);
+        finish();
+        startActivity(intent);
+    }
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -159,7 +173,6 @@ public class Home_LearnLesson extends AppCompatActivity {
             default:
                 Toast.makeText(this, "Invalid question type !", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 
@@ -175,7 +188,13 @@ public class Home_LearnLesson extends AppCompatActivity {
     }
 
     public void getAllQuestionOfPackage(int packageID){
-        questionList = AppDatabase.getInstance(Home_LearnLesson.this).questionDao().getQuestionListByPackageID(packageID);
+        try {
+            questionList = AppDatabase.getInstance(Home_LearnLesson.this).questionDao().getQuestionListByPackageID(packageID);
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this,"Truy vấn dữ liệu câu hỏi từ database thất bại, try again !" , Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     public Question getCurrentQuestion(){

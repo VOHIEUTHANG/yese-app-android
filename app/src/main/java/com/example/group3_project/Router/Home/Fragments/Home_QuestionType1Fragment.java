@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -20,7 +21,10 @@ import com.example.group3_project.Database.Entity.Question;
 import com.example.group3_project.Database.Entity.QuestionPackage;
 import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
+import com.example.group3_project.SubScreen.SubActivity_StartGame;
 import com.example.group3_project.Utils.Utils;
+
+import java.util.Locale;
 
 public class Home_QuestionType1Fragment extends Fragment {
 
@@ -30,6 +34,7 @@ public class Home_QuestionType1Fragment extends Fragment {
 
     TextView etT1UserAnswer;
     ImageView ivT1AudioIcon;
+    private TextToSpeech mTTS;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,8 +64,9 @@ public class Home_QuestionType1Fragment extends Fragment {
     }
 
     private void setEvent() {
+        initialVoice();
         ivT1AudioIcon.setOnClickListener(item -> {
-            playAudioHandler(question.getAudioFile());
+            speak(question.getAnswer());
         });
         etT1UserAnswer.addTextChangedListener(new TextWatcher() {
             @Override
@@ -94,5 +100,36 @@ public class Home_QuestionType1Fragment extends Fragment {
         });
     }
 
+    public void speak(String text) {
+        if(mTTS == null ){
+            Toast.makeText(requireContext(), "TextToSpeech method is null !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+    }
 
+    public void initialVoice() {
+        mTTS = new TextToSpeech(requireContext(), i -> {
+            if (i == TextToSpeech.SUCCESS) {
+                int result = mTTS.setLanguage(Locale.ENGLISH);
+
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Toast.makeText(requireContext(), "Language not supported !", Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
+            } else {
+                Toast.makeText(requireContext(), "Initialization failed !", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mTTS != null) {
+            mTTS.stop();
+            mTTS.shutdown();
+        }
+        super.onDestroy();
+    }
 }

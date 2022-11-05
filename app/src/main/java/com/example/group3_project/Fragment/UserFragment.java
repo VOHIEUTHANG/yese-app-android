@@ -111,12 +111,7 @@ public class UserFragment extends Fragment {
         btnLogout.setOnClickListener(item -> {
             SessionManagement sessionManagement = new SessionManagement(getContext());
             sessionManagement.logout();
-            try {
-                Toast.makeText(getContext(), "Đăng xuất thành công !", Toast.LENGTH_SHORT).show();
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            requireActivity().finish();
             startActivity(new Intent(requireContext(), SubActivity_SignInSignUp.class));
         });
     }

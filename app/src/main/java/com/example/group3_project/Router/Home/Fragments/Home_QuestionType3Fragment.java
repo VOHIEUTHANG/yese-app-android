@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +21,15 @@ import com.example.group3_project.MyApplication;
 import com.example.group3_project.R;
 import com.example.group3_project.Utils.Utils;
 
+import java.util.Locale;
+
 
 public class Home_QuestionType3Fragment extends Fragment {
 
     private Question question;
 
     MediaPlayer player;
+    private TextToSpeech mTTS;
 
     ImageView ivT3Audiofile;
     RadioGroup rgRadioGroup;
@@ -62,6 +66,7 @@ public class Home_QuestionType3Fragment extends Fragment {
     }
 
     private void setEvent() {
+        initialVoice();
         String keysString = question.getKeysArray();
         String[] keysArray = keysString.split(" ");
         if(keysArray.length >= 3){
@@ -71,8 +76,13 @@ public class Home_QuestionType3Fragment extends Fragment {
         }
 
         ivT3Audiofile.setOnClickListener(view -> {
-            playAudioHandler(question.getAudioFile());
+            if(question.getAnswer().length() > 0){
+                speak(question.getAnswer());
+            }else{
+                Toast.makeText(requireContext(), "Answer is not valid, check again!", Toast.LENGTH_SHORT).show();
+            }
         });
+
         rgRadioGroup.setOnCheckedChangeListener((radioGroup, i) -> {
             int selectedId = rgRadioGroup.getCheckedRadioButtonId();
             switch (selectedId) {
@@ -93,17 +103,38 @@ public class Home_QuestionType3Fragment extends Fragment {
 
     }
 
-    public void playAudioHandler(String audioFileName) {
-        if (player == null) {
-            player = MediaPlayer.create(requireContext(), Utils.getRawResourceIdFromFileName(requireContext(), audioFileName));
+
+    public void speak(String text) {
+        if(mTTS == null ){
+            Toast.makeText(requireContext(), "TextToSpeech method is null !", Toast.LENGTH_SHORT).show();
+            return;
         }
-        player.start();
-        player.setOnCompletionListener(mediaPlayer -> {
-            if (player != null) {
-                player.release();
-                player = null;
+        mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+    }
+
+    public void initialVoice() {
+        mTTS = new TextToSpeech(requireContext(), i -> {
+            if (i == TextToSpeech.SUCCESS) {
+                int result = mTTS.setLanguage(Locale.ENGLISH);
+
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Toast.makeText(requireContext(), "Language not supported !", Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
+            } else {
+                Toast.makeText(requireContext(), "Initialization failed !", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mTTS != null) {
+            mTTS.stop();
+            mTTS.shutdown();
+        }
+        super.onDestroy();
     }
 
 }

@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.group3_project.Admin.AdminActivity;
 import com.example.group3_project.Database.AppDatabase.AppDatabase;
 import com.example.group3_project.Database.Entity.User;
 import com.example.group3_project.MainActivity;
@@ -115,14 +116,21 @@ public class Login extends Fragment {
             if(Utils.verifyPassword(password,hashPassword)){
                 SessionManagement sessionManagement = new SessionManagement(getContext());
                 sessionManagement.saveSession(user);
-//              Move to next activity
-                if(user.getLevel() <= 0 ){
-//                    user has not selected level.
-                    startActivity(new Intent(getContext(), SubActivity_ChooseLevel.class));
+                if(user.getIsAdmin() == 1){
+//                    ADMIN RULE
+                    startActivity(new Intent(getContext(), AdminActivity.class));
                 }else{
+//                    USER RULE
+                    //              Move to next activity
+                    if(user.getLevel() <= 0 ){
+//                    user has not selected level.
+                        startActivity(new Intent(getContext(), SubActivity_ChooseLevel.class));
+                    }else{
 //                    user has selected level.
-                    startActivity( new Intent(getContext(), MainActivity.class));
+                        startActivity( new Intent(getContext(), MainActivity.class));
+                    }
                 }
+
 
             }else{
                 tvLoginStatus.setText("Wrong username or password, try again !");

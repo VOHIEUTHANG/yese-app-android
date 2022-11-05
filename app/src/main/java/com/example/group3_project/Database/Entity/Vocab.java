@@ -10,10 +10,13 @@ import java.util.Date;
 
 @Entity(tableName = "Vocab")
 public class Vocab implements Serializable {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private int id;
     @NonNull
     private String words;
     private String type;
+    @NonNull
     private String means;
     @ColumnInfo(defaultValue = "none")
     private String synonymWords;
@@ -28,7 +31,6 @@ public class Vocab implements Serializable {
     public Vocab() {
     }
 
-
     public Vocab(@NonNull String words, String type, String means, String rk_username, Date createAt) {
         this.words = words;
         this.type = type;
@@ -37,7 +39,7 @@ public class Vocab implements Serializable {
         this.createAt = createAt;
     }
 
-    public Vocab(@NonNull String words, String type, String means, String synonymWords, String example, String label,String rk_username, Date createAt) {
+    public Vocab(@NonNull String words, String type, String means, String synonymWords, String example, String label, String rk_username, Date createAt) {
         this.words = words;
         this.type = type;
         this.means = means;
@@ -53,6 +55,14 @@ public class Vocab implements Serializable {
         this.means = means;
         this.rk_username = rk_username;
         this.createAt = createAt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getRk_username() {return rk_username;}

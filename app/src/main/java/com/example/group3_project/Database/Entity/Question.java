@@ -1,6 +1,9 @@
 package com.example.group3_project.Database.Entity;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -13,17 +16,18 @@ public class Question {
     private int rk_typeID;
     @NonNull
     private int rk_packageID;
-    private String audioFile;
     private String answer;
     private String image;
     private String VnWord;
     private String keysArray;
+    private Bitmap imageBitmap;
+    // Datatype of questionDataInsertType include:  default - image - audio
+    private String questionDataInsertType;
 
     //    Question type 1
-    public Question(int typeID, int packageID, String audioFile, String answer) {
+    public Question(int typeID, int packageID, String answer) {
         this.rk_typeID = typeID;
         this.rk_packageID = packageID;
-        this.audioFile = audioFile;
         this.answer = answer;
     }
 
@@ -36,17 +40,26 @@ public class Question {
         this.answer = answer;
     }
 
-    //    Question type 3
-    public Question(int typeID, int packageID, String audioFile, String keysArray, String answer) {
+    //    Question type 2 (admin insert)
+    public Question(int typeID, int packageID, String VnWord, String answer, Bitmap iamgeBitmap, String questionDataInsertType) {
         this.rk_typeID = typeID;
         this.rk_packageID = packageID;
-        this.audioFile = audioFile;
+        this.VnWord = VnWord;
+        this.answer = answer;
+        this.imageBitmap = iamgeBitmap;
+        this.questionDataInsertType = questionDataInsertType;
+    }
+
+    //    Question type 3
+    public Question(int typeID, int packageID, String keysArray, String answer) {
+        this.rk_typeID = typeID;
+        this.rk_packageID = packageID;
         this.keysArray = keysArray;
         this.answer = answer;
     }
 
     //    Question type 4
-    public Question(int typeID, int packageID, String VnWord, String keysArray, String answer, boolean avoidOverloadingErrors) {
+    public Question(int typeID, int packageID, String VnWord, String keysArray, String answer) {
         this.rk_typeID = typeID;
         this.rk_packageID = packageID;
         this.VnWord = VnWord;
@@ -55,6 +68,22 @@ public class Question {
     }
 
     public Question() {
+    }
+
+    public Bitmap getImageBitmap() {
+        return imageBitmap;
+    }
+
+    public void setImageBitmap(Bitmap imageBitmap) {
+        this.imageBitmap = imageBitmap;
+    }
+
+    public String getQuestionDataInsertType() {
+        return questionDataInsertType;
+    }
+
+    public void setQuestionDataInsertType(String questionDataInsertType) {
+        this.questionDataInsertType = questionDataInsertType;
     }
 
     public int getId() {
@@ -79,14 +108,6 @@ public class Question {
 
     public void setRk_packageID(int rk_packageID) {
         this.rk_packageID = rk_packageID;
-    }
-
-    public String getAudioFile() {
-        return audioFile;
-    }
-
-    public void setAudioFile(String audioFile) {
-        this.audioFile = audioFile;
     }
 
     public String getAnswer() {

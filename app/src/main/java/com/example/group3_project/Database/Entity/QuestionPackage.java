@@ -20,7 +20,9 @@ public class QuestionPackage  implements Serializable {
 //    0 is lock, 1 is unlock
     private int isLock;
 
-    public QuestionPackage(@NonNull String topicName, @NonNull String icon, int level, int isLock) {
+    private int haveNewUpdate;
+
+    public QuestionPackage(String topicName, String icon, int level, int isLock) {
         this.topicName = topicName;
         this.icon = icon;
         this.level = level;
@@ -36,6 +38,14 @@ public class QuestionPackage  implements Serializable {
     }
 
     public QuestionPackage(){}
+
+    public int getHaveNewUpdate() {
+        return haveNewUpdate;
+    }
+
+    public void setHaveNewUpdate(int haveNewUpdate) {
+        this.haveNewUpdate = haveNewUpdate;
+    }
 
     public int getId() {
         return id;

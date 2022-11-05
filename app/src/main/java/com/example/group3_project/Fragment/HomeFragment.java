@@ -31,10 +31,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-    ListView lvPackageListLevel1,lvPackageListLevel2;
-    QuestionPackageAdapter questionPackageAdapterLevel1,questionPackageAdapterLevel2;
+    ListView lvPackageListLevel1, lvPackageListLevel2, lvPackageListLevel3;
+    QuestionPackageAdapter questionPackageAdapterLevel1, questionPackageAdapterLevel2, questionPackageAdapterLevel3;
     List<QuestionPackage> packageListForLevel1;
     List<QuestionPackage> packageListForLevel2;
+    List<QuestionPackage> packageListForLevel3;
 
     public HomeFragment() {
     }
@@ -60,7 +61,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        initData();
         setControl();
         setEvent();
     }
@@ -68,124 +68,95 @@ public class HomeFragment extends Fragment {
     private void setControl() {
         lvPackageListLevel1 = getView().findViewById(R.id.lvPackageListLevel1);
         lvPackageListLevel2 = getView().findViewById(R.id.lvPackageListLevel2);
+        lvPackageListLevel3 = getView().findViewById(R.id.lvPackageListLevel3);
     }
 
     private void setEvent() {
+        unlockLessonForUser();
         packageListForLevel1 = getAllPackagesByLevel(1);
         packageListForLevel2 = getAllPackagesByLevel(2);
-        questionPackageAdapterLevel1 = new QuestionPackageAdapter( requireContext(), R.layout.home_layout_package, packageListForLevel1);
-        questionPackageAdapterLevel2 = new QuestionPackageAdapter(requireContext(), R.layout.home_layout_package,packageListForLevel2 );
+        packageListForLevel3 = getAllPackagesByLevel(3);
+        questionPackageAdapterLevel1 = new QuestionPackageAdapter(requireContext(), R.layout.home_layout_package, packageListForLevel1);
+        questionPackageAdapterLevel2 = new QuestionPackageAdapter(requireContext(), R.layout.home_layout_package, packageListForLevel2);
+        questionPackageAdapterLevel3 = new QuestionPackageAdapter(requireContext(), R.layout.home_layout_package, packageListForLevel3);
         lvPackageListLevel1.setAdapter(questionPackageAdapterLevel1);
         lvPackageListLevel2.setAdapter(questionPackageAdapterLevel2);
+        lvPackageListLevel3.setAdapter(questionPackageAdapterLevel3);
 
 
         lvPackageListLevel1.setOnItemClickListener((adapterView, view, i, l) -> {
-            QuestionPackage questionPackage = packageListForLevel1.get(i);
-            if(questionPackage.getIsLock() == 0){
+            clickOnPackHandler(i, 1);
+        });
+
+        lvPackageListLevel2.setOnItemClickListener((adapterView, view, i, l) -> {
+            clickOnPackHandler(i, 2);
+        });
+
+        lvPackageListLevel3.setOnItemClickListener((adapterView, view, i, l) -> {
+            clickOnPackHandler(i, 3);
+        });
+    }
+
+    public void clickOnPackHandler(int i, int level) {
+        QuestionPackage questionPackage = new QuestionPackage();
+
+        switch (level) {
+            case 1:
+                questionPackage = packageListForLevel1.get(i);
+                break;
+            case 2:
+                questionPackage = packageListForLevel2.get(i);
+                break;
+        }
+
+        if (questionPackage != null) {
+            if (questionPackage.getIsLock() == 0) {
                 Intent intent = new Intent(requireContext(), Home_StartLessonActivity.class);
                 Bundle extras = new Bundle();
                 extras.putSerializable("package", questionPackage);
                 intent.putExtras(extras);
                 startActivity(intent);
-            }else{
-                Toast.makeText(requireContext(),questionPackage.getTopicName() + " packages is locked !", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(requireContext(), "Bài học chủ đề " + questionPackage.getTopicName() + " đã bị khóa, vui lòng hoàn thành tất cả bài học của level trước đó để mở khóa !", Toast.LENGTH_SHORT).show();
             }
-
-        });
+        } else {
+            Toast.makeText(requireContext(), questionPackage.getTopicName() + " packages is null, try again ! !", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public List<QuestionPackage> getAllPackagesByLevel(int level){
+    public List<QuestionPackage> getAllPackagesByLevel(int level) {
         return AppDatabase.getInstance(requireContext()).packageDao().getAllPackagesByLevel(level);
     }
 
-    public void addWordPairData() {
-        List<WordPair> wordPairList = new ArrayList<>();
-        wordPairList.addAll(InitialData.getWordPairList());
-        try {
-            AppDatabase.getInstance(requireContext()).wordPairDao().insertListWordPair(wordPairList);
-            Toast.makeText(requireContext(), "Insert word list succeffully !", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(requireContext(), "Insert word list failure !", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void addUserData() {
-        List<User> userList = new ArrayList<>();
-        userList.addAll(InitialData.getUserList());
-        try {
-            AppDatabase.getInstance(requireContext()).userDao().insertListUser(userList);
-            Toast.makeText(requireContext(), "Insert user list succeffully !", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(requireContext(), "Insert user list failure !", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void addVocabsData() {
-        List<Vocab> vocabList = new ArrayList<>();
-        if (getCurrentUserLogin() != null) {
-            vocabList.addAll(InitialData.getVocabList(getCurrentUserLogin()));
-            try {
-                AppDatabase.getInstance(requireContext()).vocabDao().insertVocabList(vocabList);
-                Toast.makeText(requireContext(), "Insert vocabs list succeffully !", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(requireContext(), "Insert vocabs list failure !", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(requireContext(), "User is not logged in yet !", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    private void addQuestionTypeData() {
-        List<QuestionType> questionTypeList = new ArrayList<>();
-        questionTypeList.addAll(InitialData.getQuestionTypeList());
-        try {
-            AppDatabase.getInstance(requireContext()).questionTypeDao().insertListType(questionTypeList);
-            Toast.makeText(requireContext(), "Insert question type list succeffully !", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(requireContext(), "Insert question type list failure !", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void addPackageData() {
-        List<QuestionPackage> questionPackageList = new ArrayList<>();
-        questionPackageList.addAll(InitialData.getPackageList());
-        try {
-            AppDatabase.getInstance(requireContext()).packageDao().insertListPackage(questionPackageList);
-            Toast.makeText(requireContext(), "Insert package list succeffully !", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(requireContext(), "Insert package list failure !", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void addQuestionList() {
-        List<Question> questions = new ArrayList<>();
-        questions.addAll(InitialData.getQuestionList());
-        try {
-            AppDatabase.getInstance(requireContext()).questionDao().insertListQuestion(questions);
-            Toast.makeText(requireContext(), "Insert question list successful !", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(requireContext(), "Insert question list failure !", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void initData() {
-//        addWordPairData();
-//        addUserData();
-//        addVocabsData();
-//        addQuestionTypeData();
-//        addPackageData();
-        addQuestionList();
-    }
 
     public String getCurrentUserLogin() {
         return Utils.getUsername(requireContext());
+    }
+
+
+    public void unlockLessonForUser() {
+        User user = Utils.getCurrentUser(requireContext());
+        if (user != null) {
+            int userLevel = user.getLevel();
+            if (userLevel > 0) {
+                switch (userLevel) {
+                    case 1:
+                        AppDatabase.getInstance(requireContext()).packageDao().lockPackageByLevel(2);
+                        AppDatabase.getInstance(requireContext()).packageDao().lockPackageByLevel(3);
+                        break;
+                    case 2:
+                        AppDatabase.getInstance(requireContext()).packageDao().unlockPackageByLevel(2);
+                        AppDatabase.getInstance(requireContext()).packageDao().lockPackageByLevel(3);
+                        break;
+                    case 3:
+                        AppDatabase.getInstance(requireContext()).packageDao().unlockPackageByLevel(2);
+                        AppDatabase.getInstance(requireContext()).packageDao().unlockPackageByLevel(3);
+                        break;
+                    default:
+                        Toast.makeText(requireContext(), "user level không hợp lệ !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
 

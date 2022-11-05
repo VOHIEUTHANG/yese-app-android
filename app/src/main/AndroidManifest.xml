@@ -9,11 +9,20 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="Yese - English App"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Group3_Project"
         tools:targetApi="31">
+        <activity
+            android:name=".Router.Notify.Notify_DisplayNotify"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.AdminActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Router.Home.Activity.Home_AnswerResult"
+            android:exported="false" />
         <activity
             android:name=".Router.Home.Activity.Home_LearnLesson"
             android:exported="false" />
@@ -28,7 +37,13 @@
             android:exported="true" />
         <activity
             android:name=".SubScreen.SubActivity_StartGame"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Router.Note.Activities.Note_update_vocap"
             android:exported="false" />
@@ -51,13 +66,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Group3_Project.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.Group3_Project.NoActionBar" />
     </application>
 
 </manifest>

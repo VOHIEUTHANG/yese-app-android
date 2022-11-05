@@ -3,10 +3,11 @@ package com.example.group3_project.Database.Entity;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(tableName = "UserAnswersResult", primaryKeys = {"rk_username", "rk_packageID"})
-public class UserPackageCrossRef {
+public class UserPackageCrossRef implements Serializable {
     @NonNull
     private String rk_username;
     @NonNull

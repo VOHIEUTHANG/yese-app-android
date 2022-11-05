@@ -65,7 +65,7 @@ public class QuestionPackageAdapter extends ArrayAdapter {
         tvPackageQuestionCount.setText(String.valueOf(getQuestionCountByPackageID(questionPackage.getId())) + " lessons");
 
 //      xử lý giao diện mà người dùng đã trả lời rồi
-        if(isUserAnswer > 0){
+        if(isUserAnswer > 0 && questionPackage.getIsLock() == 0){
             UserPackageCrossRef questionAnswerResult = AppDatabase.getInstance(context).userPackageDao().getUserAnswerPackage(Utils.getUsername(context), questionPackage.getId());
             if(questionAnswerResult.getIsFinish() == 1){
                 ivPackageFinishIcon.setImageResource(R.drawable.ic_check_finish);

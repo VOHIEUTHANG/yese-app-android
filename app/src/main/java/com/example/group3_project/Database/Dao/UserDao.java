@@ -33,4 +33,7 @@ public interface UserDao {
     @Update
     void updateUser(User user);
 
+    @Query("SELECT username from user")
+    String[] getAllUsername();
+
 }

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.Fragments.AddQuestionType2">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/btnT2AddQuestion"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <EditText
+                android:id="@+id/edtT2VnWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/custom_input"
+                android:hint="Vietnamese word"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp" />
+
+            <EditText
+                android:id="@+id/edtT2Answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/custom_input"
+                android:hint="English word answer"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnT2ImageFileUpload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_custom_white"
+                android:drawableLeft="@drawable/ic_file_upload"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="6dp"
+                android:text="Select image file" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="320dp"
+                android:layout_height="180dp">
+
+                <ImageView
+                    android:id="@+id/ivT2ImageUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnT2AddQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_rounded_full"
+            android:paddingVertical="14dp"
+            android:text="Add"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

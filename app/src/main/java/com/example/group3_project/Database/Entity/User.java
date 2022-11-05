@@ -23,6 +23,7 @@ public class User {
     private String avatar;
 //    Level 1  -> 3 ; from mới học = 1, sơ cấp = 2 to trung cấp = 3
     private int level;
+    private int isAdmin;
 
     public User(String username, String displayName, String password, String email, int streak, int diamond, String avatar) {
         this.username = username;
@@ -34,12 +35,13 @@ public class User {
         this.avatar = avatar;
     }
 
-    public User(String username, String password, String displayName, int diamond,String avatar) {
+    public User(String username, String password, String displayName, int diamond,String avatar , int isAdmin) {
         this.username = username;
         this.displayName = displayName;
         this.password = password;
         this.diamond = diamond;
         this.avatar = avatar;
+        this.isAdmin = isAdmin;
     }
 
     public User(String username, String displayName, String password) {
@@ -60,6 +62,14 @@ public class User {
         this.displayName = displayName;
         this.diamond = diamond;
         this.avatar = avatar;
+    }
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public User(){};

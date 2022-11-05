@@ -1,5 +1,8 @@
 package com.example.group3_project.Router.Home.Fragments;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,9 +11,12 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,7 +70,11 @@ public class Home_QuestionType2Fragment extends Fragment {
 
     private void setEvent() {
         tvT2VnWord.setText(question.getVnWord());
-        ivT2QuestionIcon.setImageResource(Utils.getDrawableResourceIdFromFileName(requireContext(), question.getImage()));
+        if (question.getQuestionDataInsertType() != null && question.getQuestionDataInsertType().equals("image")) {
+            ivT2QuestionIcon.setImageBitmap(question.getImageBitmap());
+        } else {
+            ivT2QuestionIcon.setImageResource(Utils.getDrawableResourceIdFromFileName(requireContext(), question.getImage()));
+        }
 //       add current word to user note;
         ivAddToNote.setOnClickListener(view -> {
             Vocab newVocab = new Vocab(question.getAnswer(), question.getVnWord(), Utils.getUsername(requireContext()), new Date());
@@ -73,9 +83,11 @@ public class Home_QuestionType2Fragment extends Fragment {
             if (isVocabSave > 0) {
                 Toast.makeText(requireContext(), "Bạn đã thêm từ vựng này vào note rồi !", Toast.LENGTH_SHORT).show();
             } else {
+
                 try {
                     AppDatabase.getInstance(requireContext()).vocabDao().insertOneVocab(newVocab);
                     Toast.makeText(requireContext(), "Thêm từ vào user note thành công !", Toast.LENGTH_SHORT).show();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(requireContext(), "Xảy ra lỗi khi thêm từ vào note !", Toast.LENGTH_SHORT).show();
@@ -101,6 +113,8 @@ public class Home_QuestionType2Fragment extends Fragment {
             }
         });
 
-
     }
+
+
+
 }

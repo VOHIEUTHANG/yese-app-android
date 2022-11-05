@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.group3_project.Database.AppDatabase.AppDatabase;
 import com.example.group3_project.Database.Entity.QuestionPackage;
@@ -47,12 +48,16 @@ public class Home_StartLessonActivity extends AppCompatActivity {
             finish();
         });
         btnContinute.setOnClickListener(item->{
-            Intent intent = new Intent(this, Home_LearnLesson.class);
-            Bundle extras = new Bundle();
-            extras.putSerializable("package", questionPackage);
-            intent.putExtras(extras);
-            startActivity(intent);
-            finish();
+            if(getQuestionCountByPackageID(questionPackage.getId())==0){
+                Toast.makeText(this, "Bài học này chưa có câu hỏi, vui lòng liên hệ admin để thêm dữ liệu !", Toast.LENGTH_SHORT).show();
+            }else{
+                Intent intent = new Intent(this, Home_LearnLesson.class);
+                Bundle extras = new Bundle();
+                extras.putSerializable("package", questionPackage);
+                intent.putExtras(extras);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
@@ -66,4 +71,6 @@ public class Home_StartLessonActivity extends AppCompatActivity {
     public int getQuestionCountByPackageID(int packageID){
         return AppDatabase.getInstance(this).questionDao().getQuestionCountByPackageID(packageID);
     }
+
+
 }

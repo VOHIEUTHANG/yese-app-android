@@ -66,28 +66,33 @@
                 tools:listitem="@layout/home_layout_package" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Level 3"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_light"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/lvPackageListLevel3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10.0sp"
+                android:nestedScrollingEnabled="true"
+                tools:listitem="@layout/home_layout_package" />
+        </LinearLayout>
+
     </LinearLayout>
 
-    <!--            <LinearLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginBottom="10dp"-->
-    <!--                android:orientation="vertical">-->
-
-    <!--                <TextView-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginBottom="20dp"-->
-    <!--                    android:text="Level 3"-->
-    <!--                    android:textAlignment="center"-->
-    <!--                    android:textColor="@color/text_color_light"-->
-    <!--                    android:textSize="25dp"-->
-    <!--                    android:textStyle="bold" />-->
-
-    <!--                <androidx.recyclerview.widget.RecyclerView-->
-    <!--                    android:id="@+id/rcvPackageListLevel3"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content" />-->
-    <!--            </LinearLayout>-->
 
 </androidx.core.widget.NestedScrollView>
